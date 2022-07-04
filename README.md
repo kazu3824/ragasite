@@ -28,7 +28,7 @@
  - 特定のレゲエ音楽のルーツを知りたい時
 
 ## 設計書
-
+- テーブル定義書　https://docs.google.com/spreadsheets/d/1gaXifxgNytox-iuGjNunrtXrSbfoZg9U0X_seX35gnk1784682846/edit#gid=
 
 ## 開発環境
 - OS：Linux(CentOS)
