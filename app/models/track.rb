@@ -10,4 +10,5 @@ class Track < ApplicationRecord
   def favorited_by?(user)
     track_favorites.exists?(user_id: user.id)
   end
+
 end

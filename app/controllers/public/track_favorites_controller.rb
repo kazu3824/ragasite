@@ -12,4 +12,9 @@ class Public::TrackFavoritesController < ApplicationController
     track_favorite.destroy
     redirect_to request.referer
   end
+  
+  def index
+    favorites = TrackFavorite.where(user: current_user).pluck(:track_id)
+    @tracks = Track.find(favorites)
+  end
 end
