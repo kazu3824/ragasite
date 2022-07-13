@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   namespace :public do
     resources :users, only: [:index, :show, :edit]
-    resources :tracks, only: [:index, :show, :edit, :create, :destroy, :update]
+    resources :tracks, only: [:index, :show, :edit, :create, :destroy, :update]do
+     resources :comments, only: [:create, :destroy]
+      resource :track_favorites, only: [:create, :destroy]
+    end
+    get "searches/tags"=>"searches#search_tag"
+    get "searches/keywords"=>"searches#search_keyword"
   end
 
   root to: "homes#top"

@@ -1,2 +1,46 @@
-<h1>Public::Tracks#show</h1>
-<p>Find me in app/views/public/tracks/show.html.erb</p>
+<div class="container">
+  <h2>曲投稿詳細</h2>
+  <div class='row'>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ユーザー<%= image_tag @track.user.get_profile_image, size: '50x50' %></th>
+          <th><%= @track.user.name %></th>
+        </tr>
+        <tr>
+          <th>曲名</th>
+          <th><%= @track.title %></th>
+        </tr>
+        <tr>
+          <th>歌手名</th>
+          <th><%= @track.artist.name %></th>
+        </tr>
+        <tr>
+          <th>概要</th>
+          <th><%= @track.description %></th>
+        </tr>
+        <tr>
+          <th>リンク</th>
+          <th><%= link_to "#{@track.url}",  @track.url %></th>
+        </tr>
+        <tr>
+          <th>タグ</th>
+          <th><%= @track.tag.name %></th>
+        </tr>
+        <tr>
+          <th>いいね</th>
+        </tr>
+      </thead>
+    </table>
+    <% if @track.user == current_user %>
+    <div class="row">
+      <%= link_to "編集する", edit_public_track_path(@track.id), class: 'btn btn-success' %>
+      <%= link_to "Destroy", public_track_path(@track.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </div>
+    <% end %>
+  </div>
+  <div class="comment_index">
+    <%= render "public/comments/each", track: @track %>
+  </div>
+    <%= render "public/comments/form", track: @track, comment: @comment %>
+</div>
