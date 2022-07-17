@@ -11,7 +11,7 @@
   </div>
   <div class="form-group">
     <%= f.label :概要 %>
-    <%= f.text_field :description, class: 'form-control tarck_description' %>
+    <%= f.text_area :description, class: 'form-control tarck_description' %>
   </div>
   <div class="form-group">
     <%= f.label :参考文献orリンク %>
@@ -19,11 +19,9 @@
   </div>
   <div class="form-group">
     <%= f.label :タグ %>
-    <%= f.select :tag_id,Tag.all.pluck(:name, :id), class: 'form-control track_tag' %>
+    <%= f.select :tag_id,Tag.all.pluck(:name, :id), {}, { class: 'form-control' } %>
   </div>
   <div class="form-group">
-    <%= f.submit class: 'btn btn-success' %>
+    <%= f.submit "投稿", class: 'btn btn-success' %>
   </div>
-
-
 <% end %>

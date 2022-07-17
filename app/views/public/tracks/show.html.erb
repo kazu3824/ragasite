@@ -5,7 +5,7 @@
       <thead>
         <tr>
           <th>ユーザー<%= image_tag @track.user.get_profile_image, size: '50x50' %></th>
-          <th><%= @track.user.name %></th>
+          <th><%= link_to @track.user.name, public_artist_path(@track.user.id) %></th>
         </tr>
         <tr>
           <th>曲名</th>
@@ -13,7 +13,7 @@
         </tr>
         <tr>
           <th>歌手名</th>
-          <th><%= @track.artist.name %></th>
+          <th><%= link_to @track.artist.name, public_artist_path(@track.artist.id) %></th>
         </tr>
         <tr>
           <th>概要</th>
@@ -21,7 +21,7 @@
         </tr>
         <tr>
           <th>リンク</th>
-          <th><%= link_to "#{@track.url}",  @track.url %></th>
+          <th><%= link_to "#{@track.url}",  @track.url, target: :_blank  %></th>
         </tr>
         <tr>
           <th>タグ</th>
@@ -29,16 +29,22 @@
         </tr>
         <tr>
           <th>いいね</th>
+          <th><%= render "public/track_favorites/btn", track: @track %></th>
         </tr>
       </thead>
     </table>
     <% if @track.user == current_user %>
-    <div class="row">
+    <div>
       <%= link_to "編集する", edit_public_track_path(@track.id), class: 'btn btn-success' %>
-      <%= link_to "Destroy", public_track_path(@track.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      <%= link_to "曲を削除", public_track_path(@track.id), class: "btn btn-danger mr-1", method: :delete, "data-confirm" => "本当に削除しますか？" %>
     </div>
     <% end %>
+
+    <div>
+      <%= link_to "曲一覧へ", public_tracks_path, class: 'btn btn-primary' %>
+    </div>
   </div>
+  <p>↓曲にコメントする</p>
   <div class="comment_index">
     <%= render "public/comments/each", track: @track %>
   </div>

@@ -1,11 +1,13 @@
-<% if track.favorited_by?(current_user) %>
-  <%= link_to public_track_track_favorites_path(track), method: :delete do %>
-    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-    <%= track.track_favorites.count %>
-  <% end %>
-<% else %>
-    <%= link_to public_track_track_favorites_path(track), method: :post do %>
-    <i class="fas fa-heart" aria-hidden="true"></i>
-    <%= track.track_favorites.count %>
+<% if user_signed_in? %>
+  <% if track.favorited_by?(current_user) %>
+    <%= link_to public_track_track_favorites_path(track), method: :delete, remote: true do %>
+      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+      <span class= "text-danger"><%= track.track_favorites.count %></span>
+    <% end %>
+  <% else %>
+      <%= link_to public_track_track_favorites_path(track), method: :post, remote: true do %>
+      <i class="fas fa-heart" aria-hidden="true"></i>
+      <%= track.track_favorites.count %>
+    <% end %>
   <% end %>
 <% end %>

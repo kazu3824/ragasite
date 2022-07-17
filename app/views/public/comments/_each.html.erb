@@ -1,16 +1,15 @@
-<table>
+<table class="table table-hover table-inverse">
   <tbody>
     <% track.comments.each do |comment|%>
     <tr>
       <td>
-
         <%= image_tag comment.user.get_profile_image, size: "100x100" %><br>
-        <%= comment.user.name %>
+        <%= link_to comment.user.name, public_user_path(comment.user.id) %>
       </td>
       <td><%= comment.body %></td>
       <td>
         <% if comment.user == current_user %>
-          <%= link_to "Destroy", public_track_comment_path(track, comment), method: :delete, class: "btn btn-danger pull-right",remote: true %>
+          <%= link_to "コメント削除", public_track_comment_path(track, comment), method: :delete, class: "btn btn-danger pull-right",remote: true %>
         <% end %>
       </td>
     </tr>
