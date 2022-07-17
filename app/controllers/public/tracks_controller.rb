@@ -53,7 +53,7 @@ class Public::TracksController < ApplicationController
   private
 
   def track_params
-    params.require(:track).permit({:artist_attributes => :name}, :tag_id, :description, :url, :title)
+    params.require(:track).permit(:title, {:artist_attributes => :name}, :tag_id, :description, :url)
   end
 
 
@@ -63,5 +63,5 @@ class Public::TracksController < ApplicationController
       redirect_to public_track_path
     end
   end
-  
+
 end

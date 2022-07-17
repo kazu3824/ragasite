@@ -5,7 +5,7 @@
       <thead>
         <tr>
           <th>ユーザー<%= image_tag @track.user.get_profile_image, size: '50x50' %></th>
-          <th><%= link_to @track.user.name, public_artist_path(@track.user.id) %></th>
+          <th><%= link_to @track.user.name, public_user_path(@track.user.id) %></th>
         </tr>
         <tr>
           <th>曲名</th>

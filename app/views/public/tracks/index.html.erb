@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="container w-50">
     <h2>曲投稿</h2>
     <%= render 'public/tracks/form', track: @track %>
@@ -10,16 +9,15 @@
     </div>
     <div class="col-lg-6">
     <div class="float-right">
-    <%= form_with model: @search_tag, url: public_searches_tags_path,method: :get, local:true do |f| %>
-      <div class="form-group">
-        <%= f.label :タグ検索 %>
-        <%= f.select :tag_id,Tag.all.pluck(:name, :id), class: 'form-control book_title' %>
-        <%= f.submit "検索", class: 'btn btn-success' %>
-      </div>
-    <% end %>
+      <%= form_with model: @search_tag, url: public_searches_tags_path,method: :get, local:true do |f| %>
+        <div class="form-group">
+          <%= f.label :タグ検索 %>
+          <%= f.select :tag_id,Tag.all.pluck(:name, :id), class: 'form-control book_title' %>
+          <%= f.submit "検索", class: 'btn btn-success' %>
+        </div>
+      <% end %>
     </div>
   </div>
     <%= render 'public/tracks/index', tracks: @tracks %>
   </div>
-
 </div>

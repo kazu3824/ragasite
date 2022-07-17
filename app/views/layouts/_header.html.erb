@@ -9,7 +9,7 @@
         <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
           <li>
-            <%=  link_to admin_users_path,class: 'nav-link text-light' do %>
+            <%=  link_to admin_users_path,class: 'nav-link text-light btn' do %>
               <i class="fas fa-users"></i> ユーザー
             <% end %>
           </li>
@@ -19,46 +19,46 @@
           </li>
           <% end %>
         <% elsif user_signed_in? %>
-          <li>
-            <%= link_to public_user_path(current_user),class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> マイページ
+          <li class="mr-3">
+            <%= link_to public_user_path(current_user),class: 'btn btn-outline-light' do %>
+              マイページ
             <% end %>
           </li>
-            <%= link_to public_tracks_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-book-open"></i> 曲一覧
+          <li class="mr-3">
+            <%= link_to public_tracks_path,class: 'btn btn-outline-light ' do %>
+              曲一覧
             <% end %>
           </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i> ログアウト
+          <li class="mr-5">
+            <%= link_to destroy_user_session_path, method: :delete,class: 'btn btn-outline-light' do %>
+              ログアウト
             <% end %>
           </li>
           <li>
             <%= form_with model: @search_keyword, url: public_searches_keywords_path,method: :get, local:true do |f| %>
-              <%= f.label :キーワド検索,class: 'text-light' %>
               <%= f.text_field :keyword, class: 'search_keyword' %>
-              <%= f.submit "検索", class: 'btn btn-success' %>
+              <%= f.submit "検索", class: 'btn btn-success btn-outline-light' %>
             <% end %>
           </li>
         <% else %>
-          <li>
-            <%= link_to root_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> ホーム
+          <li class="mr-2">
+            <%= link_to root_path,class: 'btn btn-outline-light' do %>
+              ホーム
             <% end %>
           </li>
-          <li>
-            <%= link_to home_about_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-link"></i> アバウト
+          <li class="mr-2">
+            <%= link_to home_about_path,class: 'btn btn-outline-light' do %>
+              アバウト
             <% end %>
           </li>
-          <li>
-            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-user-plus"></i> 新規登録
+          <li class="mr-2">
+            <%= link_to new_user_registration_path,class: 'btn btn-outline-light' do %>
+              新規登録
             <% end %>
           </li>
-          <li>
-            <%= link_to new_user_session_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-in-alt"></i>ログイン
+          <li class="mr-2">
+            <%= link_to new_user_session_path,class: 'btn btn-outline-light' do %>
+              ログイン
             <% end %>
           </li>
         <% end %>
@@ -67,3 +67,23 @@
     </div>
   </nav>
 </header>
+
+<!--1.play list MODEL name has_many -->
+<!--2. tyu-kan_table play_list_track play_list_id track_id belongs_to-->
+<!--3.track has_many-->
+
+<!--playlist-->
+<!--Track.all-->
+<!------->
+<!--tyukan-table-->
+<!--play_list_id 1 track_id 1-->
+<!--play_list_id 1 track_id 2-->
+<!------->
+<!--play_list_id 2 track_id 1-->
+<!--play_list_id 2 track_id 2-->
+<!------->
+<!--play_list name user_id-->
+<!--name: play_list_id,  user_id: 1-->
+<!--name: play_list_id,  user_id: 2-->
+
+<!--current_user.play_lists.first.tracks-->

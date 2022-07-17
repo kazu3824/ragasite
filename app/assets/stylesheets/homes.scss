@@ -1,3 +1,22 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.topimage {
+   background-image: image-url('/assets/topimage.jpeg');
+   width: 620px;
+   height: 365px;
+   padding: 60px;
+   margin-bottom: 80px;
+   background-size: contain;
+}
+
+.list-btn {
+  list-style: none;
+  max-width: 376px;
+  margin: 0 auto;
+}
+
+.bg-color > h1,
+.bg-color > span {
+  background-color: #fff;
+}
