@@ -1,7 +1,6 @@
 <div class="container">
-  <h2>歌手名</h2>
+  <h2><%= @artist.name %></h2>
   <div class='row'>
-      <h2>投稿</h2>
       <%= render 'public/tracks/index', tracks: @tracks %>
   </div>
 </div>

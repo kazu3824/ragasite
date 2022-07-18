@@ -19,5 +19,17 @@
     </tr>
   </thead>
 </table>
-  <%= link_to "投稿する", public_tracks_path, class:"btn btn btn-primary" %>
-  <%= link_to "いいねリスト", public_track_favorites_path, class:"btn btn btn-primary" %>
+  <%= link_to "投稿する", public_tracks_path, class:"btn btn-success" %>
+  <%= link_to "いいねリスト", public_track_favorites_path, class:"btn btn-primary" %>
+  <% if current_user == @user %>
+    <%= link_to "プレイリストを作成する", new_public_play_list_path, class:"btn btn-success" %>
+  <% end %>
+<% if @play_lists.any? %>
+<p>プレイリスト</p>
+  <ul>
+    <% @play_lists.each do |play_list| %>
+      <li><%= link_to play_list.title, public_play_list_path(play_list) %></li>
+    <% end %>
+  </ul>
+<% end %>
+

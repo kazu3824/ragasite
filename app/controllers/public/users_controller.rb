@@ -10,6 +10,7 @@ class Public::UsersController < ApplicationController
      #@tracks = Track.all
      @user = User.find(params[:id])
      @tracks = @user.tracks
+     @play_lists = @user.play_lists
   end
 
   def edit

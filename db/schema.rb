@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_16_072454) do
+ActiveRecord::Schema.define(version: 2022_07_18_104131) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,24 @@ ActiveRecord::Schema.define(version: 2022_07_16_072454) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "line_items", force: :cascade do |t|
+    t.integer "play_list_id", null: false
+    t.integer "track_id", null: false
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["play_list_id"], name: "index_line_items_on_play_list_id"
+    t.index ["track_id"], name: "index_line_items_on_track_id"
+  end
+
+  create_table "play_lists", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_play_lists_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -106,4 +124,7 @@ ActiveRecord::Schema.define(version: 2022_07_16_072454) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "line_items", "play_lists"
+  add_foreign_key "line_items", "tracks"
+  add_foreign_key "play_lists", "users"
 end

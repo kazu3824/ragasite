@@ -8,16 +8,16 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
-          <li>
-            <%=  link_to admin_users_path,class: 'nav-link text-light btn' do %>
-              <i class="fas fa-users"></i> ユーザー
+          <li class="mr-3">
+            <%= link_to admin_users_path,class: 'btn btn-outline-light' do %>
+              ユーザー
             <% end %>
           </li>
-          <li>
-            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i> ログアウト
+          <li class="mr-3">
+            <%= link_to destroy_admin_session_path, method: :delete,class: 'btn btn-outline-light' do %>
+              ログアウト
+            <% end %>
           </li>
-          <% end %>
         <% elsif user_signed_in? %>
           <li class="mr-3">
             <%= link_to public_user_path(current_user),class: 'btn btn-outline-light' do %>
@@ -29,7 +29,7 @@
               曲一覧
             <% end %>
           </li>
-          <li class="mr-5">
+          <li class="mr-4">
             <%= link_to destroy_user_session_path, method: :delete,class: 'btn btn-outline-light' do %>
               ログアウト
             <% end %>
@@ -41,22 +41,22 @@
             <% end %>
           </li>
         <% else %>
-          <li class="mr-2">
+          <li class="mr-4">
             <%= link_to root_path,class: 'btn btn-outline-light' do %>
               ホーム
             <% end %>
           </li>
-          <li class="mr-2">
+          <li class="mr-4">
             <%= link_to home_about_path,class: 'btn btn-outline-light' do %>
               アバウト
             <% end %>
           </li>
-          <li class="mr-2">
+          <li class="mr-4">
             <%= link_to new_user_registration_path,class: 'btn btn-outline-light' do %>
               新規登録
             <% end %>
           </li>
-          <li class="mr-2">
+          <li class="mr-3">
             <%= link_to new_user_session_path,class: 'btn btn-outline-light' do %>
               ログイン
             <% end %>

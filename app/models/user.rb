@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  
+
   GUEST_EMAIL = "guest@example.com"
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :track_favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :track_favorited_trackss, through: :track_favorites, source: :track
+  has_many :play_lists, dependent: :destroy
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : "no_image.jpg"
@@ -22,7 +23,7 @@ class User < ApplicationRecord
        user.name = "guestuser"
     end
   end
-  
+
   def guest?
     email == GUEST_EMAIL
   end

@@ -23,10 +23,10 @@
         </div>
         <div class="form-group">
           <%= f.label :タグ %>
-          <%= f.select :tag_id,Tag.all.pluck(:name, :id), class: 'form-control track_tag' %>
+          <%= f.select :tag_id,Tag.all.pluck(:name, :id), {}, { class: 'form-control' } %>
         </div>
         <div class="form-group">
-          <%= f.submit class: 'btn btn-success' %>
+          <%= f.submit "編集する", class: 'btn btn-success' %>
         </div>
       <% end %>
     </div>
