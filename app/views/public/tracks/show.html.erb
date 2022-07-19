@@ -1,11 +1,11 @@
 <div class="container">
-  <h2>曲詳細</h2>
+   <h2 class="head-line title_h2 text-left bg-light d-inline-block">曲詳細</h2>
     <div class='row'>
       <table class="table table-bordered">
         <thead>
           <tr>
             <th>ユーザー<%= image_tag @track.user.get_profile_image, size: '50x50' %></th>
-            <t><%= link_to @track.user.name, public_user_path(@track.user.id) %></th>
+            <th><%= link_to @track.user.name, public_user_path(@track.user.id) %></th>
           </tr>
           <tr>
             <th>曲名</th>
@@ -39,14 +39,16 @@
         <%= link_to "曲を削除", public_track_path(@track.id), class: "btn btn-danger mr-1", method: :delete, "data-confirm" => "本当に削除しますか？" %>
       </div>
       <% end %>
-
       <div>
         <%= link_to "曲一覧へ", public_tracks_path, class: 'btn btn-primary' %>
       </div>
     </div>
-    <h3>↓曲にコメントする</h3>
+
     <div class="comment_index">
+      <p><strong>↓曲にコメントする</strong></p>
       <%= render "public/comments/each", track: @track %>
     </div>
+    <div class="container w-50">
       <%= render "public/comments/form", track: @track, comment: @comment %>
+    </div>
 </div>

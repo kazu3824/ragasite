@@ -1,7 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h1>曲投稿編集</h1>
+      <h2 class="head-line title_h2 text-left bg-light d-inline-block">曲投稿編集</h2>
       <%= form_with model: @track, url: public_track_path(@track.id), local:true do |f| %>
         <div class="form-group">
           <%= f.label :曲名 %>

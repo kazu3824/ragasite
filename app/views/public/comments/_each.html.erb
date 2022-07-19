@@ -9,7 +9,7 @@
       <td><%= comment.body %></td>
       <td>
         <% if comment.user == current_user %>
-          <%= link_to "コメント削除", public_track_comment_path(track, comment), method: :delete, class: "btn btn-danger pull-right",remote: true %>
+          <%= link_to "削除", public_track_comment_path(track, comment), method: :delete, class: "btn btn-danger pull-right",remote: true %>
         <% end %>
       </td>
     </tr>

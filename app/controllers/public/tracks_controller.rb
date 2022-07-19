@@ -28,7 +28,7 @@ class Public::TracksController < ApplicationController
     @track = Track.new(track_params)
     @track.user_id = current_user.id
    if @track.save
-    redirect_to public_track_path(@track)
+    redirect_to public_track_path(@track), notice: "曲を投稿しました"
    else
     @tracks = Track.all
     render :index
@@ -38,7 +38,7 @@ class Public::TracksController < ApplicationController
   def update
     @track = Track.find(params[:id])
     if @track.update(track_params)
-      redirect_to public_track_path(@track)
+      redirect_to public_track_path(@track), notice: "投稿を編集しました"
     else
       render "edit"
     end
