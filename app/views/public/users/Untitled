@@ -1,0 +1,48 @@
+<table class='table'>
+  <thead>
+  <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+    <tr>
+      <th>ユーザー</th>
+      <th><%= user.name %></th>
+    </tr>
+    <tr>
+      <th>プロフィール編集</th>
+      <th>
+        <% unless user.guest? %>
+          <%= link_to edit_public_user_path(user) do%>
+            <i class="btn btn-outline-secondary btn-block">
+             <i class="fas fa-user-cog"></i>
+            </i>
+          <% end %>
+        <% end %>
+      </th>
+    </tr>
+    <% if current_user.id == @user.id %>
+    <tr>
+      <th>
+        <%= link_to "曲を投稿", public_tracks_path, class:"btn btn-success" %>
+      </th>
+    </tr>
+    <% end %>
+    <tr>
+      <th>
+        <%= link_to "いいねリスト", public_track_favorites_path, class:"btn btn-primary" %>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <% if current_user == @user %>
+          <%= link_to "プレイリスト作成", new_public_play_list_path, class:"btn btn-success" %>
+        <% end %>
+        <% if @play_lists.any? %>
+        <p>プレイリスト</p>
+          <ul>
+            <% @play_lists.each do |play_list| %>
+              <li><%= link_to play_list.title, public_play_list_path(play_list) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+</table>

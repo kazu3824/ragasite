@@ -36,7 +36,7 @@
           </li>
           <li>
             <%= form_with model: @search_keyword, url: public_searches_keywords_path,method: :get, local:true do |f| %>
-              <%= f.text_field :keyword, class: 'search_keyword' %>
+              <%= f.text_field :keyword, placeholder: "キーワードを入力", class: 'search_keyword' %>
               <%= f.submit "検索", class: 'btn btn-success btn-outline-light' %>
             <% end %>
           </li>

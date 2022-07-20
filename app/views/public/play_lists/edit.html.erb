@@ -1,1 +1,6 @@
-<%= render 'form', play_list: @play_list, url: public_play_list_path(@play_list) %>
+<div class="container">
+ <h2 class="head-line title_h2 text-left bg-light d-inline-block">プレイリスト編集</h2>
+  <div class="row">
+    <%= render 'form', play_list: @play_list, url: public_play_list_path(@play_list) %>
+  </div>
+</div>

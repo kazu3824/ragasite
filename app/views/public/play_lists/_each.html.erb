@@ -1,0 +1,12 @@
+<% if play_lists.any? %>
+  <h2 class="head-line title_h2 text-left bg-light d-inline-block">プレイリスト一覧</h2>
+  <% play_lists.each do |play_list| %>
+    <table class='table table-hover table-inverse'>
+      <tr>
+        <tr>
+          <td><%= link_to play_list.title, public_play_list_path(play_list) %></td>
+        </tr>
+      </tr>
+    </table>
+  <% end %>
+<% end %>

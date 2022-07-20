@@ -5,10 +5,12 @@
       <h1><strong>ようこそRAGAサイトへ !!</strong> </h1>
       <span>このサイトは利用者様の好きなレゲエ音楽を共有することで、<br>レゲエ音楽で人と人を繋ぐサイトです。</span>
       </div>
+      <% unless user_signed_in? %>
       <div class="btn-wrapper mx-auto">
           <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
           <%= link_to '登録済みの方はこちらへ', new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
           <%= link_to '登録がお済みでない方はこちらへ', new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
       </div>
+      <% end %>
   </div>
 </div>
