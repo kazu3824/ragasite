@@ -15,7 +15,7 @@ class Public::PlayListsController < ApplicationController
     #play_listのtrack_idsを一旦track_idsに入れている
     track_ids = params[:play_list][:track_ids]
     # track_idsのデータがあってなおかつ、保存が成功したならば
-    if track_ids.any? && @play_list.save
+    if !track_ids.nil? && @play_list.save
       #保存するtrack_idsを一件ずつ
       track_ids.each do |track_id|
         #選曲したidをプレイリストのラインアイテムに新規で保存する

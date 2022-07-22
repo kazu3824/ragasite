@@ -15,22 +15,22 @@
                <i class="fas fa-user-cog"></i>
               </i>
             <% end %>
-        <% end %>
         </th>
+        <% end %>
       <% end %>
     </tr>
     <tr>
       <th>
       <% if current_user.id == @user.id %>
-        <%= link_to "曲を投稿", public_tracks_path, class:"btn btn-success" %>
+        <%= link_to "投稿", public_tracks_path, class:"btn btn-success" %>
       <% end %>
-        <%= link_to "いいねリスト", public_track_favorites_path, class:"btn btn-primary" %>
+        <%= link_to "お気に入り", public_track_favorites_path, class:"btn btn-primary" %>
       </th>
     </tr>
     <tr>
       <% if current_user == @user %>
       <th>
-          <%= link_to "プレイリスト作成", new_public_play_list_path, class:"btn btn-success" %>
+          <%= link_to "プレイリスト作成", new_public_play_list_path, class:"btn btn-warning" %>
       </th>
       <% end %>
     </tr>

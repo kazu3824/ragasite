@@ -9,11 +9,12 @@
       <%= render 'profile', user: @user %>
     </div>
     <div class='col-6'>
-      <%= render 'public/play_lists/each', play_lists: @play_lists %>
+      <h2 class="head-line title_h2 text-left bg-light d-inline-block">プレイリスト一覧</h2>
+        <%= render 'public/play_lists/each', play_lists: @play_lists %>
     </div>
   </div>
   <div class='row'>
     <h2 class="head-line title_h2 text-left bg-light d-inline-block">投稿リスト</h2>
-    <%= render 'public/tracks/index', tracks: @tracks %>
+      <%= render 'public/tracks/index', tracks: @tracks %>
   </div>
 </div>

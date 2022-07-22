@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container">
-      <a class="navbar-brand" href="/"><span>RAGAサイト</span></a>
+      <a class="navbar-brand" href="/"><span><%= image_tag asset_path('top_icon'), size:'50x50' %> RAGAサイト</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -13,7 +13,7 @@
               ユーザー
             <% end %>
           </li>
-          <li class="mr-3">
+          <li class="mr-5">
             <%= link_to destroy_admin_session_path, method: :delete,class: 'btn btn-outline-light' do %>
               ログアウト
             <% end %>
@@ -56,7 +56,7 @@
               新規登録
             <% end %>
           </li>
-          <li class="mr-3">
+          <li class="mr-5">
             <%= link_to new_user_session_path,class: 'btn btn-outline-light' do %>
               ログイン
             <% end %>
@@ -67,23 +67,3 @@
     </div>
   </nav>
 </header>
-
-<!--1.play list MODEL name has_many -->
-<!--2. tyu-kan_table play_list_track play_list_id track_id belongs_to-->
-<!--3.track has_many-->
-
-<!--playlist-->
-<!--Track.all-->
-<!------->
-<!--tyukan-table-->
-<!--play_list_id 1 track_id 1-->
-<!--play_list_id 1 track_id 2-->
-<!------->
-<!--play_list_id 2 track_id 1-->
-<!--play_list_id 2 track_id 2-->
-<!------->
-<!--play_list name user_id-->
-<!--name: play_list_id,  user_id: 1-->
-<!--name: play_list_id,  user_id: 2-->
-
-<!--current_user.play_lists.first.tracks-->
