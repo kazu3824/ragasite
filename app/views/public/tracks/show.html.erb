@@ -1,7 +1,7 @@
 <div class="container">
    <h2 class="head-line title_h2 text-left bg-light d-inline-block">曲詳細</h2>
     <div class='row'>
-      <table class="table table-bordered">
+      <table class="table table-bordered track-table">
         <thead>
           <tr>
             <th>ユーザー<%= image_tag @track.user.get_profile_image, size: '50x50' %></th>
@@ -16,7 +16,7 @@
             <th><%= link_to @track.artist.name, public_artist_path(@track.artist.id) %></th>
           </tr>
           <tr>
-            <th>概要</th>
+            <th class="align-middle">概要</th>
             <th><%= @track.description %></th>
           </tr>
           <tr>

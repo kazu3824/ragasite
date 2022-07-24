@@ -10,11 +10,11 @@
         <% unless user.guest? %>
         <th>プロフィール編集</th>
         <th>
-            <%= link_to edit_public_user_path(user) do%>
-              <i class="btn btn-outline-secondary btn-block">
-               <i class="fas fa-user-cog"></i>
-              </i>
-            <% end %>
+          <%= link_to edit_public_user_path(user) do%>
+            <i class="btn btn-outline-secondary btn-block">
+              <i class="fas fa-user-cog"></i>
+            </i>
+          <% end %>
         </th>
         <% end %>
       <% end %>
@@ -30,7 +30,7 @@
     <tr>
       <% if current_user == @user %>
       <th>
-          <%= link_to "プレイリスト作成", new_public_play_list_path, class:"btn btn-warning" %>
+        <%= link_to "プレイリスト作成", new_public_play_list_path, class:"btn btn-warning" %>
       </th>
       <% end %>
     </tr>

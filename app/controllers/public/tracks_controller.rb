@@ -25,7 +25,16 @@ class Public::TracksController < ApplicationController
   end
 
   def create
-    @track = Track.new(track_params)
+    #アーティストを歌手テーブルから歌手名で検索するhttps://railsdoc.com/page/find_by
+    artist = Artist.find_by(name: params[:artist_name])
+    #アーティストがなければ
+    if !artist
+      #アーティストを新しく作る
+      artist = Artist.new(name: params[:artist_name])
+      #新しいアーティストを保存する
+      artist.save
+    end
+    @track = Track.new(track_params.merge(artist_id: artist.id))
     @track.user_id = current_user.id
    if @track.save
     redirect_to public_track_path(@track), notice: "曲を投稿しました"
@@ -53,7 +62,7 @@ class Public::TracksController < ApplicationController
   private
 
   def track_params
-    params.require(:track).permit(:title, {:artist_attributes => :name}, :tag_id, :description, :url)
+    params.require(:track).permit(:title, :tag_id, :description, :url)
   end
 
 

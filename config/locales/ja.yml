@@ -1,13 +1,16 @@
 ja:
   activerecord:
     models:
-      track: トラック
-      artist: アーティス著
+      track: 曲
+      artist: 歌手
+      user: ユーザー
     attributes:
       track:
         title: 曲名
       artist:
         name: アーティスト名
+      user:
+        name: ユーザー名
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
