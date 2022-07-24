@@ -25,7 +25,8 @@
           </tr>
           <tr>
             <th>タグ</th>
-            <th><%= @track.tag.name %></th>
+            <%# public_searches_tags_pathに対してgetメソッドでnameをtrack[tag_id]として,値を＠track.tag.idで指定して送る %>
+            <th><%= link_to @track.tag.name, public_searches_tags_path('track[tag_id]': @track.tag.id) %></th>
           </tr>
           <tr>
             <th>いいね</th>

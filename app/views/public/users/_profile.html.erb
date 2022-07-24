@@ -3,13 +3,13 @@
     <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
     <tr>
       <th>ユーザー</th>
-      <th><%= user.name %></th>
+      <th class="text-center"><%= user.name %></th>
     </tr>
     <tr>
       <% if current_user.id == @user.id %>
         <% unless user.guest? %>
         <th>プロフィール編集</th>
-        <th>
+        <th class="text-cebter">
           <%= link_to edit_public_user_path(user) do%>
             <i class="btn btn-outline-secondary btn-block">
               <i class="fas fa-user-cog"></i>
