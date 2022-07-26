@@ -26,11 +26,11 @@ class Public::TracksController < ApplicationController
 
   def create
     #アーティストを歌手テーブルから歌手名で検索するhttps://railsdoc.com/page/find_by
-    artist = Artist.find_by(name: params[:artist_name])
+    artist = Artist.find_by(name: params[:track][:artist_name])
     #アーティストがなければ
     if !artist
       #アーティストを新しく作る
-      artist = Artist.new(name: params[:artist_name])
+      artist = Artist.new(name: params[:track][:artist_name])
       #新しいアーティストを保存する
       artist.save
     end
@@ -62,7 +62,7 @@ class Public::TracksController < ApplicationController
   private
 
   def track_params
-    params.require(:track).permit(:title, :tag_id, :description, :url)
+    params.require(:track).permit(:title, :tag_id, :description, :url, :artist_name)
   end
 
 

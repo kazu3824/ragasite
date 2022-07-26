@@ -1,6 +1,7 @@
-<%= render 'public/shared/error_messages', resource: @user %>
+
 <div class='row'>
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <%= render 'public/shared/error_messages', resource: @user %>
     <h2>プロフィール編集</h2>
     <%= form_with model:@user, url: public_user_path, local:true do |f| %>
       <div class="form-group">

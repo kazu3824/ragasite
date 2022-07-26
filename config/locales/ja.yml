@@ -7,6 +7,7 @@ ja:
     attributes:
       track:
         title: 曲名
+        artist: 歌手名
       artist:
         name: アーティスト名
       user:

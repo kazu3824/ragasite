@@ -6,7 +6,9 @@ class Track < ApplicationRecord
   has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
   has_many :comments, dependent: :destroy
   has_many :line_items, dependent: :destroy
-  accepts_nested_attributes_for :artist
+  # accepts_nested_attributes_for :artist
+
+  attr_accessor :artist_name
 
   validates :title, presence: true
 
