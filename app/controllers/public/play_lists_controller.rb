@@ -39,7 +39,7 @@ class Public::PlayListsController < ApplicationController
     # play_listのtrack_idsを一旦track_idsに入れている
     track_ids = params[:play_list][:track_ids]
     # もしtrack_idsが送信されていれば
-    if track_ids.any?
+    if track_ids && track_ids.any?
       # 送信されてきたトラックidsから現在存在するtrack_idsを除いたトラックidsをnewとする
       insert_list = track_ids - old_track_ids
       # 新しくなるプレイリストに存在しないidをdestroyする

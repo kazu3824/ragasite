@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create(:email => 'test@com', :password => 'hoge123')
+Admin.create(:email => 'admin@com', :password => 'hoge123')
 
 Tag.create(:name => 'レゲエ')
 Tag.create(:name => 'ジャパニーズレゲエ')

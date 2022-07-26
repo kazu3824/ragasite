@@ -1,11 +1,9 @@
-<div class="container">
- <h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @play_list.title %></h2>
-  <div class="row">
-    <%= render 'public/tracks/index', tracks: @tracks %>
-  </div>
-  <% if @play_list.user == current_user %>
-    <%= link_to "再作成", edit_public_play_list_path(@play_list.id), class:"btn btn-success" %>
-    <%= link_to "プレイリストを削除", public_play_list_path(@play_list.id), class: "btn btn-danger mr-1", method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    <%= link_to "マイページ", public_user_path(@play_list.user.id), class:"btn btn-primary" %>
-  <% end %>
+<h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @play_list.title %></h2>
+<div class="row">
+ <%= render 'public/tracks/index', tracks: @tracks %>
 </div>
+<% if @play_list.user == current_user %>
+ <%= link_to "再作成", edit_public_play_list_path(@play_list.id), class:"btn btn-success" %>
+ <%= link_to "プレイリストを削除", public_play_list_path(@play_list.id), class: "btn btn-danger mr-1", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+ <%= link_to "マイページ", public_user_path(@play_list.user.id), class:"btn btn-primary" %>
+<% end %>

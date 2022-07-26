@@ -1,40 +1,23 @@
-<table class='table'>
-  <thead>
-    <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
-    <tr>
-      <th>ユーザー</th>
-      <th class="text-center"><%= user.name %></th>
-    </tr>
-    <tr>
-      <% if current_user.id == @user.id %>
-        <% unless user.guest? %>
-        <th>プロフィール編集</th>
-        <th class="text-cebter">
-          <%= link_to edit_public_user_path(user) do%>
-            <i class="btn btn-outline-secondary btn-block">
-              <i class="fas fa-user-cog"></i>
-            </i>
-          <% end %>
-        </th>
-        <% end %>
-      <% end %>
-    </tr>
-    <tr>
-      <th>
-      <% if current_user.id == @user.id %>
-        <%= link_to "投稿", public_tracks_path, class:"btn btn-success" %>
-      <% end %>
-        <%= link_to "お気に入り", public_track_favorites_path, class:"btn btn-primary" %>
-      </th>
-    </tr>
-    <tr>
-      <% if current_user == @user %>
-      <th>
-        <%= link_to "プレイリスト作成", new_public_play_list_path, class:"btn btn-warning" %>
-      </th>
-      <% end %>
-    </tr>
-  </thead>
-</table>
-
-
+<h4 class="head-line title_h2 text-left bg-light d-inline-block mt-3">プロフィール</h4>
+<div>
+  <%= image_tag user.get_profile_image, size:'100x100' %>
+</div>
+<h3 class="font-weight-bold"><%= user.name %></h3>
+<% if current_user.id == @user.id %>
+  <div class="mb-3">
+    <p class="font-weight-bold">プロフィール編集</p>
+    <%= link_to edit_public_user_path(user) do %>
+      <i class="btn btn-outline-secondary btn-block">
+        <i class="fas fa-user-cog"></i>
+       </i>
+    <hr>
+  </div>
+  <% end %>
+<% end %>
+<% if current_user.id == @user.id %>
+  <%= link_to "投稿", public_tracks_path, class:"btn btn-success btn-block" %>
+<% end %>
+  <%= link_to "お気に入り", public_track_favorites_path, class:"btn btn-primary btn-block" %>
+<% if current_user == @user %>
+  <%= link_to "プレイリスト作成", new_public_play_list_path, class:"btn btn-warning btn-block" %>
+<% end %>

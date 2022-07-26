@@ -1,20 +1,33 @@
-<div class="container">
-  <% if current_user.id == @user.id %>
-　  <h2 class="head-line title_h2 text-left bg-light d-inline-block">マイページ</h2>
-　<% else %>
-　  <h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @user.name %>のページ</h2>
-　<% end %>
-  <div class='row'>
-    <div class='col-6'>
-      <%= render 'profile', user: @user %>
-    </div>
-    <div class='col-6'>
-      <h2 class="head-line title_h2 text-left bg-light d-inline-block">プレイリスト一覧</h2>
-        <%= render 'public/play_lists/each', play_lists: @play_lists %>
-    </div>
+<% if current_user.id == @user.id %>
+　<h2 class="head-line title_h2 text-left bg-light d-inline-block">マイページ</h2>
+<% else %>
+　<h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @user.name %>のページ</h2>
+<% end %>
+<div class='row'>
+  <div class='col-sm-4 col-md-3'>
+    <%= render 'profile', user: @user %>
   </div>
-  <div class='row'>
-    <h2 class="head-line title_h2 text-left bg-light d-inline-block">投稿リスト</h2>
+  <div class="col-sm-8 col-md-">
+    <h2 class="head-line title_h2 bg-light d-inline-block">プレイリスト一覧</h2>
+    <% if @play_lists.any? %>
+      <%= render 'public/play_lists/each', play_lists: @play_lists %>
+    <% else %>
+      <p>プレイリストはまだありません</p>
+    <% end %>
+    <h2 class="head-line title_h2 bg-light d-inline-block mt-4">投稿リスト</h2>
+    <% if @tracks.any? %>
       <%= render 'public/tracks/index', tracks: @tracks %>
+    <% else %>
+      <p>投稿はまだありません</p>
+    <% end %>
   </div>
 </div>
+
+
+
+
+
+
+
+
+

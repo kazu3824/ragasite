@@ -1,6 +1,6 @@
-<div class="container">
-  <h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @seach_word %></h2>
-  <div class="row">
-    <%= render 'public/tracks/index', tracks: @tracks %>
-  </div>
-</div>
+<h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @seach_word %></h2>
+<% if @tracks.any? %>
+  <%= render 'public/tracks/index', tracks: @tracks %>
+<% else %>
+  <P>該当する投稿はありません</P>
+<% end %>

@@ -1,35 +1,33 @@
-<div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2 class="head-line title_h2 text-left bg-light d-inline-block">曲投稿編集</h2>
-      <%= form_with model: @track, url: public_track_path(@track.id), local:true do |f| %>
-       <%= render 'public/shared/error_messages', resource: @track %>
-        <div class="form-group">
-          <%= f.label :曲名＊ %>
-          <%= f.text_field :title, class: 'form-control track_title' %>
-        </div>
-        <div class="form-group">
-           <%= f.fields_for :artist do |ff| %>
-           <%= ff.label :歌手名＊ %>
-           <%= ff.text_field :name, class: 'form-control artist_name'  %>
-         <% end %>
-        </div>
-        <div class="form-group">
-          <%= f.label :概要 %>
-          <%= f.text_field :description, class: 'form-control tarck_description' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :参考文献orリンク %>
-          <%= f.text_field :url, class: 'form-control track_url' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :タグ＊ %>
-          <%= f.select :tag_id,Tag.all.pluck(:name, :id), {}, { class: 'form-control' } %>
-        </div>
-        <div class="form-group">
-          <%= f.submit "編集する", class: 'btn btn-success' %>
-        </div>
-      <% end %>
-    </div>
+<div class='row'>
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2 class="head-line title_h2 text-left bg-light d-inline-block">曲投稿編集</h2>
+    <%= form_with model: @track, url: public_track_path(@track.id), local:true do |f| %>
+     <%= render 'public/shared/error_messages', resource: @track %>
+      <div class="form-group">
+        <%= f.label :曲名＊ %>
+        <%= f.text_field :title, class: 'form-control track_title' %>
+      </div>
+      <div class="form-group">
+         <%= f.fields_for :artist do |ff| %>
+         <%= ff.label :歌手名＊ %>
+         <%= ff.text_field :name, class: 'form-control artist_name'  %>
+       <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :概要 %>
+        <%= f.text_field :description, class: 'form-control tarck_description' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :参考文献orリンク %>
+        <%= f.text_field :url, class: 'form-control track_url' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :タグ＊ %>
+        <%= f.select :tag_id,Tag.all.pluck(:name, :id), {}, { class: 'form-control' } %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "編集する", class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>
 </div>
