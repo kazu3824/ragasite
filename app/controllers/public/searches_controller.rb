@@ -8,13 +8,13 @@ class Public::SearchesController < ApplicationController
   end
 
   def search_keyword
-    #トラックテーブルとアーティストテーブルを同時に指定して曲名と概要と歌手名の中に,パラメーターとして送られてきたキーワードに一致するデータがあれば取得する
+    #トラックテーブルとアーティストテーブルを同時に指定して曲名と概要と歌手名とタグ名中に,パラメーターとして送られてきたキーワードに一致するデータがあれば取得する
     @tracks = Track.joins(:artist, :tag)
               .where("tracks.title like ? or tracks.description like ? or artists.name like ? or tags.name like ?",
-              "%" + santize_sql_like(params["track"]["keyword"]) + "%",
-              "%" + santize_sql_like(params["track"]["keyword"]) + "%",
-              "%" + santize_sql_like(params["track"]["keyword"]) + "%",
-              "%" + santize_sql_like(params["track"]["keyword"]) + "%")
+              "%" + params["track"]["keyword"] + "%",
+              "%" + params["track"]["keyword"] + "%",
+              "%" + params["track"]["keyword"] + "%",
+              "%" + params["track"]["keyword"] + "%")
     #パラメーターとして送られてきたキーワードをseach_wordに代入している
     @seach_word = params[:track][:keyword]
     render 'public/searches/index'

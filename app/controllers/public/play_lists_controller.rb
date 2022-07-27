@@ -34,6 +34,10 @@ class Public::PlayListsController < ApplicationController
 
   def update
     @play_list = PlayList.find(params[:id])
+    #ここから名前の更新
+    # 上で取得した@play_listのtitleカラムを、再作成ページのフォームに入力されてPOSTされたtitleという名前のパラメータで更新
+    @play_list.update(title: params[:play_list][:title])
+    #ここからは曲の更新
     # track_idsの配列を数値から文字列に変換する
     old_track_ids = @play_list.track_ids&.map(&:to_s)
     # play_listのtrack_idsを一旦track_idsに入れている
