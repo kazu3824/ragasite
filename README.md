@@ -29,7 +29,7 @@
 
 ## 設計書
 - テーブル定義書　https://docs.google.com/spreadsheets/d/1esrHA_1-R2bxMjaxQQhStOCfnxTLTgMN0zkN49fgYoI/edit#gid=1867222895
-- ワイヤーフレイム　https://app.diagrams.net/#G1LID8yQmprhr4XthL8BZG_a2Ehe4s3aCH
+
 
 ## 開発環境
 - OS：Linux(CentOS)
