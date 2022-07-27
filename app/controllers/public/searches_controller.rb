@@ -9,8 +9,9 @@ class Public::SearchesController < ApplicationController
 
   def search_keyword
     #トラックテーブルとアーティストテーブルを同時に指定して曲名と概要と歌手名の中に,パラメーターとして送られてきたキーワードに一致するデータがあれば取得する
-    @tracks = Track.joins(:artist)
-              .where("tracks.title like ? or tracks.description like ? or artists.name like ?",
+    @tracks = Track.joins(:artist, :tag)
+              .where("tracks.title like ? or tracks.description like ? or artists.name like ? or tags.name like ?",
+              "%" + params["track"]["keyword"] + "%",
               "%" + params["track"]["keyword"] + "%",
               "%" + params["track"]["keyword"] + "%",
               "%" + params["track"]["keyword"] + "%")

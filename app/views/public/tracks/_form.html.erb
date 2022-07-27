@@ -2,19 +2,19 @@
   <%= render 'public/shared/error_messages', resource: track %>
   <div class="form-group">
     <%= f.label :曲名＊ %>
-    <%= f.text_field :title, class: 'form-control track_title' %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
   <div class="form-group">
      <%= f.label :歌手名＊ %>
-     <%= f.text_field :artist_name, class: 'form-control track_title' %>
+     <%= f.text_field :artist_name, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :概要 %>
-    <%= f.text_area :description, class: 'form-control tarck_description' %>
+    <%= f.text_area :description, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :参考文献orリンク %>
-    <%= f.text_field :url, class: 'form-control track_url' %>
+    <%= f.text_field :url, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :タグ＊ %>
