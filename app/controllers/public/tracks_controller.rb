@@ -22,18 +22,13 @@ class Public::TracksController < ApplicationController
 
   def edit
     @track = Track.find(params[:id])
+    @track.artist_name = @track.artist.name
   end
 
   def create
     #アーティストを歌手テーブルから歌手名で検索するhttps://railsdoc.com/page/find_by
-    artist = Artist.find_by(name: params[:track][:artist_name])
-    #アーティストがなければ
-    if !artist
-      #アーティストを新しく作る
-      artist = Artist.new(name: params[:track][:artist_name])
-      #新しいアーティストを保存する
-      artist.save
-    end
+     #find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
+    artist = Artist.find_or_create_by(name: params[:track][:artist_name])
     @track = Track.new(track_params.merge(artist_id: artist.id))
     @track.user_id = current_user.id
    if @track.save
@@ -46,7 +41,10 @@ class Public::TracksController < ApplicationController
 
   def update
     @track = Track.find(params[:id])
-    if @track.update(track_params)
+    #アーティストを歌手テーブルから歌手名で検索するhttps://railsdoc.com/page/find_by
+    #find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
+    artist = Artist.find_or_create_by(name: params[:track][:artist_name])
+    if @track.update(track_params.merge(artist_id: artist.id))
       redirect_to public_track_path(@track), notice: "投稿を編集しました"
     else
       render "edit"
