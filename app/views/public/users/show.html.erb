@@ -1,13 +1,13 @@
 <% if current_user.id == @user.id %>
-　<h2 class="head-line title_h2 text-left bg-light d-inline-block">マイページ</h2>
+　<h2 class="head-line title_h2 bg-light d-inline-block">マイページ</h2>
 <% else %>
-　<h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @user.name %>のページ</h2>
+　<h2 class="head-line title_h2 bg-light d-inline-block"><%= @user.name %>のページ</h2>
 <% end %>
 <div class='row'>
-  <div class='col-sm-4 col-md-3'>
+  <div class='col-md-2'>
     <%= render 'profile', user: @user %>
   </div>
-  <div class="col-sm-8 col-md-">
+  <div class="col-md-9">
     <h2 class="head-line title_h2 bg-light d-inline-block">プレイリスト一覧</h2>
     <% if @play_lists.any? %>
       <%= render 'public/play_lists/each', play_lists: @play_lists %>

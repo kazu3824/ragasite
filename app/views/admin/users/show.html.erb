@@ -1,29 +1,26 @@
-<div class="container">
-  <h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @user.name %>の投稿</h2>
-  <table class='table table-hover table-inverse'>
-    <thead>
+<h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @user.name %>の投稿</h2>
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th class="text-center"></th>
+      <th class="text-center">名前</th>
+      <th class="text-center">曲名</th>
+      <th class="text-center">歌手名</th>
+      <th class="text-center">URL</th>
+       <th class="text-center">コメント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tracks.each do |track| %>
       <tr>
-        <th class="text-center"></th>
-        <th class="text-center">名前</th>
-        <th class="text-center">曲名</th>
-        <th class="text-center">歌手名</th>
-        <th class="text-center">URL</th>
-         <th class="text-center">コメント</th>
-        <th colspan="3"></th>
+        <td class="text-center"><%= image_tag track.user.get_profile_image, size: '50x50' %></td>
+        <td class="text-center"><%= link_to track.user.name, admin_users_path %></td>
+        <td class="text-center"><%= track.title %></td>
+        <td class="text-center"><%= track.artist.name %></td>
+        <td class="text-center"><%= link_to "#{track.url}",  track.url, target: :_blank  %></td>
+        <td class="text-center"><%= link_to track.comments.count,  admin_track_comments_path(track.id) %></td>
+        <td class="text-center"><%= link_to "削除", admin_track_path(track.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% @tracks.each do |track| %>
-        <tr>
-          <td class="text-center"><%= image_tag track.user.get_profile_image, size: '50x50' %></td>
-          <td class="text-center"><%= link_to track.user.name, admin_users_path %></td>
-          <td class="text-center"><%= track.title %></td>
-          <td class="text-center"><%= track.artist.name %></td>
-          <td class="text-center"><%= link_to "#{track.url}",  track.url, target: :_blank  %></td>
-          <td class="text-center"><%= link_to track.comments.count,  admin_track_comments_path(track.id) %></td>
-          <td class="text-center"><%= link_to "削除", admin_track_path(track.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>
