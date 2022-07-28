@@ -1,5 +1,5 @@
 <div class='row'>
-  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <div class="offset-sm-3 col-sm-6">
     <h2 class="head-line title_h2 text-left bg-light d-inline-block">曲投稿編集</h2>
     <%= form_with model: @track, url: public_track_path(@track.id), local:true do |f| %>
      <%= render 'public/shared/error_messages', resource: @track %>
@@ -13,7 +13,7 @@
       </div>
       <div class="form-group">
         <%= f.label :概要 %>
-        <%= f.text_field :description, class: 'form-control tarck_description' %>
+        <%= f.text_area :description, class: 'form-control tarck_description' %>
       </div>
       <div class="form-group">
         <%= f.label :参考文献orリンク %>

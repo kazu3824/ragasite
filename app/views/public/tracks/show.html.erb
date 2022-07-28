@@ -1,50 +1,53 @@
-<h2 class="head-line title_h2 text-left bg-light d-inline-block">曲詳細</h2>
-<table class="table table-bordered track-table">
-  <thead>
-    <tr>
-      <th>ユーザー<%= image_tag @track.user.get_profile_image, size: '50x50' %></th>
-      <th><%= link_to @track.user.name, public_user_path(@track.user.id) %></th>
-    </tr>
-    <tr>
-      <th>曲名</th>
-      <th><%= @track.title %></th>
-    </tr>
-    <tr>
-      <th>歌手名</th>
-      <th><%= link_to @track.artist.name, public_artist_path(@track.artist.id) %></th>
-    </tr>
-    <tr>
-      <th class="align-middle">概要</th>
-      <th><%= @track.description %></th>
-    </tr>
-    <tr>
-      <th>リンク</th>
-      <th><%= link_to "#{@track.url}",  @track.url, target: :_blank  %></th>
-    </tr>
-    <tr>
-      <th>タグ</th>
-      <%# public_searches_tags_pathに対してgetメソッドでnameをtrack[tag_id]として,値を＠track.tag.idで指定して送る %>
-      <th><%= link_to @track.tag.name, public_searches_tags_path('track[tag_id]': @track.tag.id) %></th>
-    </tr>
-    <tr>
-      <th>いいね</th>
-      <th id="favorite_buttons_<%= @track.id %>"><%= render "public/track_favorites/btn", track: @track %></th>
-    </tr>
-  </thead>
-</table>
-
-<% if @track.user == current_user %>
-  <div>
-    <%= link_to "編集する", edit_public_track_path(@track.id), class: 'btn btn-success' %>
-    <%= link_to "曲を削除", public_track_path(@track.id), class: "btn btn-danger mr-1", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<div class="row">
+  <div class="col-sm-12">
+    <h2 class="head-line title_h2 text-left bg-light d-inline-block">曲詳細</h2>
+    <table class="table table-bordered track-table">
+      <thead>
+        <tr>
+          <th>ユーザー<%= image_tag @track.user.get_profile_image, size: '50x50' %></th>
+          <th><%= link_to @track.user.name, public_user_path(@track.user.id) %></th>
+        </tr>
+        <tr>
+          <th>曲名</th>
+          <th><%= @track.title %></th>
+        </tr>
+        <tr>
+          <th>歌手名</th>
+          <th><%= link_to @track.artist.name, public_artist_path(@track.artist.id) %></th>
+        </tr>
+        <tr>
+          <th class="align-middle">概要</th>
+          <th class="text-break"><%= @track.description %></th>
+        </tr>
+        <tr>
+          <th>リンク</th>
+          <th class="text-break"><%= link_to @track.url.truncate(30),  @track.url, target: :_blank  %></th>
+        </tr>
+        <tr>
+          <th>タグ</th>
+          <%# public_searches_tags_pathに対してgetメソッドでnameをtrack[tag_id]として,値を＠track.tag.idで指定して送る %>
+          <th><%= link_to @track.tag.name, public_searches_tags_path('track[tag_id]': @track.tag.id) %></th>
+        </tr>
+        <tr>
+          <th>いいね</th>
+          <th id="favorite_buttons_<%= @track.id %>"><%= render "public/track_favorites/btn", track: @track %></th>
+        </tr>
+      </thead>
+    </table>
+    <% if @track.user == current_user %>
+      <div>
+        <%= link_to "編集する", edit_public_track_path(@track.id), class: 'btn btn-success' %>
+        <%= link_to "曲を削除", public_track_path(@track.id), class: "btn btn-danger mr-1", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </div>
+    <% end %>
+    <div class="mt-2 mb-3">
+      <%= link_to "曲一覧へ", public_tracks_path, class: 'btn btn-primary' %>
+    </div>
+    <div class="comment_index">
+      <p><strong>↓曲にコメントする</strong></p>
+      <%= render "public/comments/each", track: @track %>
+    </div>
   </div>
-<% end %>
-<div class="mt-2 mb-3">
-  <%= link_to "曲一覧へ", public_tracks_path, class: 'btn btn-primary' %>
-</div>
-<div class="comment_index">
-  <p><strong>↓曲にコメントする</strong></p>
-  <%= render "public/comments/each", track: @track %>
 </div>
 <div class="row">
   <div class="col-sm-8">
