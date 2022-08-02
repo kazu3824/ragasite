@@ -67,5 +67,6 @@ end
 
 gem 'acts_as_list'
 gem "net-smtp"
+gem 'net-pop', '~> 0.1.0'
 
 
