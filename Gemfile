@@ -66,8 +66,8 @@ group :production do
 end
 
 gem 'acts_as_list'
-gem "net-smtp"
-gem 'net-pop'
-gem 'net-imap'
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
 
 
