@@ -2,5 +2,5 @@
 <% if @tracks.any? %>
   <%= render 'public/tracks/index', tracks: @tracks %>
 <% else %>
-  <P>該当する投稿はありません</P>
+  <P>該当する投稿はありません。<%= link_to "曲一覧へ", public_tracks_path %></P>
 <% end %>

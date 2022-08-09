@@ -26,8 +26,8 @@ class Public::TracksController < ApplicationController
   end
 
   def create
-    #アーティストを歌手テーブルから歌手名で検索するhttps://railsdoc.com/page/find_by
-     #find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
+    #アーティストを歌手テーブルから歌手名で検索する
+    #find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
     artist = Artist.find_or_create_by(name: params[:track][:artist_name])
     @track = Track.new(track_params.merge(artist_id: artist.id))
     @track.user_id = current_user.id
