@@ -3,7 +3,7 @@ class Public::TracksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    to  = Time.current.at_end_of_day
+    to = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
     @tracks = Track.all.sort {|a,b|
       b.track_favorites.where(created_at: from...to).size <=>
@@ -26,9 +26,10 @@ class Public::TracksController < ApplicationController
   end
 
   def create
-    #アーティストを歌手テーブルから歌手名で検索する
-    #find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
+    # アーティストを歌手テーブルから歌手名で検索する
+    # find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
     artist = Artist.find_or_create_by(name: params[:track][:artist_name])
+    # 保存したいtrackの情報+artist_id
     @track = Track.new(track_params.merge(artist_id: artist.id))
     @track.user_id = current_user.id
    if @track.save
@@ -41,8 +42,8 @@ class Public::TracksController < ApplicationController
 
   def update
     @track = Track.find(params[:id])
-    #アーティストを歌手テーブルから歌手名で検索するhttps://railsdoc.com/page/find_by
-    #find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
+    # アーティストを歌手テーブルから歌手名で検索する
+    # find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
     artist = Artist.find_or_create_by(name: params[:track][:artist_name])
     if @track.update(track_params.merge(artist_id: artist.id))
       redirect_to public_track_path(@track), notice: "投稿を編集しました"

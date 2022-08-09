@@ -1,4 +1,3 @@
-<h4 class="head-line title_h2 text-left bg-light d-inline-block mt-3">プロフィール</h4>
 <div>
   <%= image_tag user.get_profile_image, size:'100x100' %>
 </div>
@@ -17,7 +16,7 @@
 <% if current_user.id == @user.id %>
   <%= link_to "投稿", public_tracks_path, class:"btn btn-success btn-block" %>
 <% end %>
-  <%= link_to "お気に入り", public_track_favorites_path, class:"btn btn-primary btn-block" %>
+  <%= link_to "お気に入り一覧", public_track_favorites_path, class:"btn btn-primary btn-block" %>
 <% if current_user == @user %>
   <%= link_to "プレイリスト作成", new_public_play_list_path, class:"btn btn-warning btn-block" %>
 <% end %>

@@ -10,18 +10,18 @@ class Public::PlayListsController < ApplicationController
 
   def create
 
-    #送られてきたタイトルのプレイリストを作成する
+    # 送られてきたタイトルのプレイリストを作成する
     @play_list = current_user.play_lists.new(play_list_params)
-    #play_listのtrack_idsを一旦track_idsに入れている
+    # play_listのtrack_idsを一旦track_idsに入れている
     track_ids = params[:play_list][:track_ids]
     # track_idsのデータがあってなおかつ、保存が成功したならば
     if !track_ids.nil? && @play_list.save
-      #保存するtrack_idsを一件ずつ
+      # 保存するtrack_idsを一件ずつ
       track_ids.each do |track_id|
-        #選曲したidをプレイリストのラインアイテムに新規で保存する
+        # 選曲したidをプレイリストのラインアイテムに新規で保存する
         @play_list.line_items.order(position: :asc).create(track_id: track_id)
       end
-      #保存完了後詳細ページに戻る
+      # 保存完了後詳細ページに戻る
       redirect_to public_play_list_url(@play_list), notice: "プレイリストを作成しました"
     else
       render :new
@@ -34,10 +34,10 @@ class Public::PlayListsController < ApplicationController
 
   def update
     @play_list = PlayList.find(params[:id])
-    #ここから名前の更新
+    # ここから名前の更新
     # 上で取得した@play_listのtitleカラムを、再作成ページのフォームに入力されてPOSTされたtitleという名前のパラメータで更新
     @play_list.update(title: params[:play_list][:title])
-    #ここからは曲の更新
+    # ここからは曲の更新
     # track_idsの配列を数値から文字列に変換する
     old_track_ids = @play_list.track_ids&.map(&:to_s)
     # play_listのtrack_idsを一旦track_idsに入れている
@@ -50,7 +50,7 @@ class Public::PlayListsController < ApplicationController
       delete_list = old_track_ids - track_ids
       # 保存するリストを一件ずつ
       insert_list.each do |track_id|
-        #新規投稿する
+        # 新規投稿する
         @play_list.line_items.find_or_create_by(track_id: track_id)
       end
        # ラインアイテムに登録されている削除したいtrack_idを探してdestroyする
