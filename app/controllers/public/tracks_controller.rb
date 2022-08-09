@@ -9,10 +9,18 @@ class Public::TracksController < ApplicationController
       b.track_favorites.where(created_at: from...to).size <=>
       a.track_favorites.where(created_at: from...to).size
     }
+    # Kaminariの配列版を使用して@tracksをページネーションする
+    @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(5)
     @track = Track.new
     @track.build_artist
     @user = current_user
     @search_tag = Track.new
+
+    # リクエストに応じてビューの切り替え
+    respond_to do |format|
+      format.html # 非同期通信でない場合はhtml.erbを呼ぶ
+      format.js # 非同期の場合はjs.erbを呼ぶ
+    end
   end
 
   def show

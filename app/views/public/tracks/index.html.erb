@@ -9,10 +9,16 @@
     <%= form_with model: @search_tag, url: public_searches_tags_path,method: :get, local:true do |f| %>
       <div class="form-group">
         <%= f.label :タグ検索 %>
-        <%= f.select :tag_id,Tag.all.pluck(:name, :id), class: 'form-control book_title' %>
+        <%= f.select :tag_id,Tag.all.pluck(:name, :id), class: 'form-control' %>
         <%= f.submit "検索", class: 'btn btn-success' %>
       </div>
     <% end %>
   </div>
-  <%= render 'public/tracks/index', tracks: @tracks %>
+  <div id="tracks">
+    <%= render 'public/tracks/index', tracks: @tracks %>
+  </div>
+  <div id="pagenate">
+    <%= paginate @tracks, remote: true %>
+  </div>
+
 </div>
