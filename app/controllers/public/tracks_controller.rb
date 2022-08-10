@@ -10,12 +10,11 @@ class Public::TracksController < ApplicationController
       a.track_favorites.where(created_at: from...to).size
     }
     # Kaminariの配列版を使用して@tracksをページネーションする
-    @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(5)
+    @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(10)
     @track = Track.new
     @track.build_artist
     @user = current_user
     @search_tag = Track.new
-
     # リクエストに応じてビューの切り替え
     respond_to do |format|
       format.html # 非同期通信でない場合はhtml.erbを呼ぶ
@@ -43,7 +42,8 @@ class Public::TracksController < ApplicationController
    if @track.save
     redirect_to public_track_path(@track), notice: "曲を投稿しました"
    else
-    @tracks = Track.all
+    # こちらはarray型ではないのでページを実行してページネーションする。
+    @tracks = Track.all.page(params[:page]).per(10)
     render :index
    end
   end

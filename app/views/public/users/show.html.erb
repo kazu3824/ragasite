@@ -1,5 +1,5 @@
 <% if current_user.id == @user.id %>
-　<h2 class="head-line title_h2 bg-light d-inline-block">マイページ</h2>
+  <h2 class="head-line title_h2 bg-light d-inline-block">マイページ</h2>
 <% else %>
 　<h2 class="head-line title_h2 bg-light d-inline-block"><%= @user.name %>のページ</h2>
 <% end %>
@@ -16,18 +16,14 @@
     <% end %>
     <h2 class="head-line title_h2 bg-light d-inline-block mt-4">投稿リスト</h2>
     <% if @tracks.any? %>
+    <div id="users_tracks">
       <%= render 'public/tracks/index', tracks: @tracks %>
+    </div>
     <% else %>
       <p>投稿はまだありません。<%= link_to "曲を投稿する", public_tracks_path %></p>
     <% end %>
   </div>
+  <div id="pagenate">
+    <%= paginate @tracks, remote: true %>
+  </div>
 </div>
-
-
-
-
-
-
-
-
-
