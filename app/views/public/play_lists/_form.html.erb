@@ -23,7 +23,6 @@
           <td><%= track.user.name %></td>
           <td><%= link_to track.title, public_track_path(track.id), class: "track_#{track.id}" %></td>
           <td><%= track.artist.name %></td>
-          <!--td class="btn">-->
           <td id="favorite_buttons_<%= track.id %>">
             <%= render "public/track_favorites/btn", track: track %>
           </td>

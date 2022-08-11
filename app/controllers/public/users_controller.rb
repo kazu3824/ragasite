@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @tracks = @user.tracks
     # Kaminariの配列版を使用して@tracksをページネーションする
-    @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(10)
+    @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(5)
     @play_lists = @user.play_lists
     # リクエストに応じてビューの切り替え
     respond_to do |format|
