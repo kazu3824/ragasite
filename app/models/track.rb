@@ -3,15 +3,17 @@ class Track < ApplicationRecord
   belongs_to :artist
   belongs_to :tag
   has_many :track_favorites, dependent: :destroy
-  has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
   has_many :comments, dependent: :destroy
   has_many :line_items, dependent: :destroy
-
-  attr_accessor :artist_name
 
   validates :title, presence: true
 
   def favorited_by?(user)
     track_favorites.exists?(user_id: user.id)
+  end
+
+  def artist_name
+    # artistがnilの場合は、nameというメソッドを実行せず、nilを返す。& => Rubyの構文。ぼっち演算子
+    artist&.name
   end
 end

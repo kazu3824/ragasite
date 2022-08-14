@@ -22,8 +22,8 @@
     <% else %>
       <p>投稿はまだありません。<%= link_to "曲を投稿する", public_tracks_path %></p>
     <% end %>
-  </div>
-  <div id="pagenate">
-    <%= paginate @tracks, remote: true %>
+    <div id="pagenate">
+      <%= paginate @tracks, remote: true %>
+    </div>
   </div>
 </div>

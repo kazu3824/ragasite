@@ -9,7 +9,6 @@ class Public::PlayListsController < ApplicationController
   end
 
   def create
-
     # 送られてきたタイトルのプレイリストを作成する
     @play_list = current_user.play_lists.new(play_list_params)
     # play_listのtrack_idsを一旦track_idsに入れている

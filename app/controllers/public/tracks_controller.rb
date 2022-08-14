@@ -3,18 +3,14 @@ class Public::TracksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    to = Time.current.at_end_of_day
-    from  = (to - 6.day).at_beginning_of_day
-    @tracks = Track.all.sort {|a,b|
-      b.track_favorites.where(created_at: from...to).size <=>
-      a.track_favorites.where(created_at: from...to).size
-    }
-    # Kaminariの配列版を使用して@tracksをページネーションする
-    @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(10)
     @track = Track.new
+    # sort_byでいいねの少ない順に並び替えてreverseでいいねの多い順に並び替えている。※sort_byはRubyの仕様で少ない順に並び替えられるため
+    @tracks = Track.all.sort_by {|track| track.track_favorites.size }.reverse
     @track.build_artist
     @user = current_user
     @search_tag = Track.new
+    # Kaminariの配列版を使用して@tracksをページネーションする
+    @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(10)
     # リクエストに応じてビューの切り替え
     respond_to do |format|
       format.html # 非同期通信でない場合はhtml.erbを呼ぶ
@@ -29,7 +25,6 @@ class Public::TracksController < ApplicationController
 
   def edit
     @track = Track.find(params[:id])
-    @track.artist_name = @track.artist.name
   end
 
   def create
@@ -69,15 +64,13 @@ class Public::TracksController < ApplicationController
   private
 
   def track_params
-    params.require(:track).permit(:title, :tag_id, :description, :url, :artist_name)
+    params.require(:track).permit(:title, :tag_id, :description, :url)
   end
-
 
   def ensure_correct_user
     @track = Track.find(params[:id])
-    unless @track.user = current_user
+    unless @track.user == current_user
       redirect_to public_track_path
     end
   end
-
 end
