@@ -27,15 +27,24 @@
  - レゲエ音楽のコミュニティーを通して新しい仲間を増やしたい時
  - 特定のレゲエ音楽のルーツを知りたい時
 
-## 設計書
-- テーブル定義書　https://docs.google.com/spreadsheets/d/1esrHA_1-R2bxMjaxQQhStOCfnxTLTgMN0zkN49fgYoI/edit#gid=1867222895
-
+## 実装機能
+ - 会員機能
+ - 管理者機能(会員,コメント管理)
+ - ゲストログイン機能
+ - 投稿機能(投稿,編集,更新,削除)
+ - いいね機能(非同期通信)
+ - いいねブックマーク機能
+ - いいねランキング表示機能
+ - コメント機能(非同期通信)
+ - ページネーション機能(非同期通信)
+ - 検索機能 (キーワード,タグ)
+ - プレイリスト作成機能(作成,編集,更新,削除)
 
 ## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails 6.1.6
-- JSライブラリ：jQuery
-- IDE：Cloud9
+ - OS：Linux(CentOS)
+ - 言語：HTML,CSS,JavaScript,Ruby,SQL
+ - フレームワーク：Ruby on Rails 6.1.6
+ - JSライブラリ：jQuery
+ - IDE：Cloud9
 
 
