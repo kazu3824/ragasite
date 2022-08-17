@@ -28,6 +28,10 @@
  - 特定のレゲエ音楽のルーツを知りたい時
 
 ## 実装機能
+ - テーブル定義書　https://docs.google.com/spreadsheets/d/1esrHA_1-R2bxMjaxQQhStOCfnxTLTgMN0zkN49fgYoI/edit#gid=1964209694
+ - ER図
+
+## 実装機能
  - 会員機能
  - 管理者機能(会員,コメント管理)
  - ゲストログイン機能

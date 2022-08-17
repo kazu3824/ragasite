@@ -1,7 +1,14 @@
 class Public::SearchesController < ApplicationController
   def search_tag
+    # tagを選択されていない場合
+    unless params["track"]["tag_id"].present?
+      # 曲一覧画面に戻る
+      redirect_to public_tracks_path
+      return
+    end
     # トラックテーブルからトラックに紐付いているtag_idを指定してtrackを取得する
     @tracks = Track.where(tag_id: params["track"]["tag_id"])
+
     # tagテーブルからtag_idを指定してnameを取得する
     @seach_word = Tag.find(params[:track][:tag_id]).name
     render 'public/searches/index'

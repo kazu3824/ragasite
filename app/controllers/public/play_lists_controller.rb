@@ -1,4 +1,6 @@
 class Public::PlayListsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @play_list = PlayList.new
   end

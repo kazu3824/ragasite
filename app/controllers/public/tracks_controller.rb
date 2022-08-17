@@ -4,9 +4,9 @@ class Public::TracksController < ApplicationController
 
   def index
     @track = Track.new
+    @track.build_artist
     # sort_byでいいねの少ない順に並び替えてreverseでいいねの多い順に並び替えている。※sort_byはRubyの仕様で少ない順に並び替えられるため
     @tracks = Track.all.sort_by {|track| track.track_favorites.size }.reverse
-    @track.build_artist
     @user = current_user
     @search_tag = Track.new
     # Kaminariの配列版を使用して@tracksをページネーションする
