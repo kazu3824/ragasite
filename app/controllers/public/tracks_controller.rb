@@ -11,6 +11,7 @@ class Public::TracksController < ApplicationController
     @search_tag = Track.new
     # Kaminariの配列版を使用して@tracksをページネーションする
     @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(10)
+    binding.pry
     # リクエストに応じてビューの切り替え
     respond_to do |format|
       format.html # 非同期通信でない場合はhtml.erbを呼ぶ
