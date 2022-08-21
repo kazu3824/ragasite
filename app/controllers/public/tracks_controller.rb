@@ -5,8 +5,18 @@ class Public::TracksController < ApplicationController
   def index
     @track = Track.new
     @track.build_artist
-    # sort_byでいいねの少ない順に並び替えてreverseでいいねの多い順に並び替えている。※sort_byはRubyの仕様で少ない順に並び替えられるため
-    @tracks = Track.all.sort_by {|track| track.track_favorites.size }.reverse
+    if params[:latest]
+      # task.rbに定義してあるscopeのlatestを使用
+      @tracks = Track.latest
+    elsif params[:old]
+      # task.rbに定義してあるscopeのoldを使用
+      @tracks = Track.old
+    elsif params[:order_by_favorite]
+      # task.rbに定義してあるscopeのorder_by_favoriteを使用
+      @tracks = Track.order_by_favorite
+    else
+      @tracks = Track.latest
+    end
     @user = current_user
     @search_tag = Track.new
     # Kaminariの配列版を使用して@tracksをページネーションする
@@ -31,7 +41,7 @@ class Public::TracksController < ApplicationController
     # アーティストを歌手テーブルから歌手名で検索する
     # find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
     artist = Artist.find_or_create_by(name: params[:track][:artist_name])
-    # 保存したいtrackの情報+artist_id
+    # 保存したいtrackの情報artist_id
     @track = Track.new(track_params.merge(artist_id: artist.id))
     @track.user_id = current_user.id
    if @track.save
