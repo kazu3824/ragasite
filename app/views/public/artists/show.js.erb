@@ -1,0 +1,5 @@
+<%# 非同期の場合、該当するトラックのテンプレートを書き換える %>
+$('#artists_tracks').html("<%= j(render 'public/tracks/index', tracks: @tracks) %>")
+
+<%# 非同期の場合ページネーションのページ番号が切り替わらないので書き換える %>
+$('#pagenate').html("<%= j(paginate @tracks, remote: true) %>")
