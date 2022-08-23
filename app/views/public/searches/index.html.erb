@@ -1,6 +1,11 @@
 <h2 class="head-line title_h2 text-left bg-light d-inline-block"><%= @seach_word %></h2>
+<div id="serches_tracks">
 <% if @tracks.any? %>
   <%= render 'public/tracks/index', tracks: @tracks %>
 <% else %>
   <P>該当する投稿はありません。<%= link_to "曲一覧へ", public_tracks_path %></P>
 <% end %>
+</div>
+<div id="pagenate">
+  <%= paginate @tracks, remote: true %>
+</div>

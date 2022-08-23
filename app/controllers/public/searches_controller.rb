@@ -8,10 +8,16 @@ class Public::SearchesController < ApplicationController
     end
     # トラックテーブルからトラックに紐付いているtag_idを指定してtrackを取得する
     @tracks = Track.where(tag_id: params["track"]["tag_id"])
-
     # tagテーブルからtag_idを指定してnameを取得する
     @seach_word = Tag.find(params[:track][:tag_id]).name
-    render 'public/searches/index'
+    # Kaminariの配列版を使用して@tracksをページネーションする
+    @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(10)
+    # リクエストに応じてビューの切り替え
+    respond_to do |format|
+      format.html {render 'public/searches/index'}# 非同期通信でない場合はhtml.erbを呼ぶ
+      format.js {render 'public/searches/index'} # 非同期の場合はjs.erbを呼ぶ
+    end
+
   end
 
   def search_keyword
@@ -24,6 +30,13 @@ class Public::SearchesController < ApplicationController
               "%" + params["track"]["keyword"] + "%")
     # パラメーターとして送られてきたキーワードをseach_wordに代入している
     @seach_word = params[:track][:keyword]
-    render 'public/searches/index'
+    # Kaminariの配列版を使用して@tracksをページネーションする
+    @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(10)
+    # リクエストに応じてビューの切り替え
+    respond_to do |format|
+      format.html {render 'public/searches/index'}# 非同期通信でない場合はhtml.erbを呼ぶ
+      format.js {render 'public/searches/index'} # 非同期の場合はjs.erbを呼ぶ
+    end
   end
+
 end
