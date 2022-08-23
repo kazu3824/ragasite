@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :users, only: [:show, :edit, :update]
     resources :play_lists, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :tracks, only: [:index, :show, :edit, :create, :destroy, :update]do
+    resources :tracks, only: [:new, :index, :show, :edit, :create, :destroy, :update]do
       resources :comments, only: [:create, :destroy]
       resource :track_favorites, only: [:create, :destroy]
     end

@@ -1,10 +1,14 @@
 class Public::TracksController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-
-  def index
+  
+  def new
     @track = Track.new
     @track.build_artist
+    @user = current_user
+  end
+
+  def index
     if params[:latest]
       # task.rbに定義してあるscopeのlatestを使用
       @tracks = Track.latest
@@ -15,9 +19,9 @@ class Public::TracksController < ApplicationController
       # task.rbに定義してあるscopeのorder_by_favoriteを使用
       @tracks = Track.order_by_favorite
     else
+      # task.rbに定義してあるscopeのlatestを使用
       @tracks = Track.latest
     end
-    @user = current_user
     @search_tag = Track.new
     # Kaminariの配列版を使用して@tracksをページネーションする
     @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(10)
@@ -49,7 +53,7 @@ class Public::TracksController < ApplicationController
    else
     # こちらはarray型ではないのでページを実行してページネーションする。
     @tracks = Track.all.page(params[:page]).per(10)
-    render :index
+    render :new
    end
   end
 

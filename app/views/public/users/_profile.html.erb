@@ -14,7 +14,7 @@
   <% end %>
 <% end %>
 <% if current_user.id == @user.id %>
-  <%= link_to "投稿", public_tracks_path, class:"btn btn-success btn-block" %>
+  <%= link_to "投稿", new_public_track_path, class:"btn btn-success btn-block" %>
 <% end %>
   <%= link_to "お気に入り一覧", public_track_favorites_path, class:"btn btn-primary btn-block" %>
 <% if current_user == @user %>
