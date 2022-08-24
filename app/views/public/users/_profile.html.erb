@@ -1,17 +1,18 @@
 <div>
   <%= image_tag user.get_profile_image, size:'100x100' %>
 </div>
-<h3 class="font-weight-bold"><%= user.name %></h3>
+<h5 class="font-weight-bold"><%= user.name %></h5>
 <% if current_user.id == @user.id %>
   <div class="mb-3">
+    <hr>
     <p class="font-weight-bold">プロフィール編集</p>
     <%= link_to edit_public_user_path(user) do %>
       <i class="btn btn-outline-secondary btn-block">
         <i class="fas fa-user-cog"></i>
        </i>
-    <hr>
+     <hr>
+    <% end %>
   </div>
-  <% end %>
 <% end %>
 <% if current_user.id == @user.id %>
   <%= link_to "投稿", new_public_track_path, class:"btn btn-success btn-block" %>
