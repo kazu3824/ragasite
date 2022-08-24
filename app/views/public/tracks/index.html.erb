@@ -4,7 +4,7 @@
   <%= link_to '新しい順', public_tracks_path(latest: "true") %>
   |<%= link_to '古い順', public_tracks_path(old: "true") %>
   |<%= link_to 'いいね順', public_tracks_path(order_by_favorite: "true") %>
-  <%= link_to "投稿する", new_public_track_path, class:"btn btn-success" %>
+  <%= link_to "曲を投稿する", new_public_track_path, class:"btn btn-success" %>
   <div class="float-right">
     <%= form_with model: @search_tag, url: public_searches_tags_path,method: :get, local:true do |f| %>
       <div class="form-group">
