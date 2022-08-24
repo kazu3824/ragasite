@@ -13,8 +13,8 @@
   <tbody>
   <% tracks.each do |track| %>
     <tr>
-      <td class="text-center"><%= image_tag track.user.get_profile_image, size: '50x50' %></td>
-      <td class="text-center"><%= link_to track.user.name, public_user_path(track.user.id) %></td>
+      <td class="text-center"><%= image_tag track.user.get_profile_image, size: '40x40' %></td>
+      <td class="text-center"><%= link_to track.user.name.truncate(15), public_user_path(track.user.id) %></td>
       <td class="text-center"><%= link_to track.title.truncate(27), public_track_path(track.id), class: "track_#{track.id}" %></td>
       <td class="text-center"><%= link_to track.artist.name.truncate(15), public_artist_path(track.artist.id) %></td>
       <td id="favorite_buttons_<%= track.id %>">
