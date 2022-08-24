@@ -1,7 +1,9 @@
 <% if current_user.id == @user.id %>
   <h2 class="head-line title_h2 bg-light d-inline-block">マイページ</h2>
+  <hr>
 <% else %>
-　<h class="head-line title_h2 bg-light d-inline-block"><%= @user.name %>のページ</h2>
+　<h2 class="head-line title_h2 bg-light d-inline-block"><%= @user.name %>のページ</h2>
+　<hr>
 <% end %>
 <div class='row'>
   <div class='col-md-2'>

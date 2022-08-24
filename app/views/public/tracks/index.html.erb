@@ -1,10 +1,5 @@
-<!--<div class="row">-->
-<!--  <div class="offset-sm-3 col-sm-6">-->
-<!--    <h2 class="head-line title_h2 text-left bg-light d-inline-block">曲投稿</h2>-->
-<!--    <%#= render 'public/tracks/form', track: @track %>-->
-<!--  </div>-->
-<!--</div>-->
-<h2 class="head-line title_h2 text-left bg-light d-inline-block">投稿一覧</h2>
+<h2 class="head-line title_h2 text-left bg-light d-inline-block">曲投稿一覧</h2>
+  <hr>
   <!--pathの後の引数(latest: "true"の部分)に(key: "value")の形で書くことによって値を自由に渡すことができる-->
   <%= link_to '新しい順', public_tracks_path(latest: "true") %>
   |<%= link_to '古い順', public_tracks_path(old: "true") %>
