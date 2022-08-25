@@ -24,7 +24,7 @@ class Public::PlayListsController < ApplicationController
         @play_list.line_items.order(position: :asc).create(track_id: track_id)
       end
       # 保存完了後詳細ページに戻る
-      redirect_to public_play_list_url(@play_list), notice: "プレイリストを作成しました"
+      redirect_to public_play_list_path(@play_list), notice: "プレイリストを作成しました"
     else
       render :new
     end
