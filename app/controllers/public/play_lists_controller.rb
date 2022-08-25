@@ -57,7 +57,7 @@ class Public::PlayListsController < ApplicationController
       end
        # ラインアイテムに登録されている削除したいtrack_idを探してdestroyする
       LineItem.where(track_id: delete_list).destroy_all
-      redirect_to public_play_list_url(@play_list), notice: "プレイリストを編集しました"
+      redirect_to public_play_list_path(@play_list), notice: "プレイリストを編集しました"
     else
       render :edit
     end
