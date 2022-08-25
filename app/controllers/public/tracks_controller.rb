@@ -5,7 +5,6 @@ class Public::TracksController < ApplicationController
   def new
     @track = Track.new
     @track.build_artist
-    @user = current_user
   end
 
   def index

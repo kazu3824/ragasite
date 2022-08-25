@@ -1,11 +1,12 @@
 class Public::PlayListsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @play_list = PlayList.new
   end
 
   def show
+    # tracksをあらかじめpreload(:tracks)で読み込んでおく
     @play_list = PlayList.preload(:tracks).find(params[:id])
     @tracks = @play_list.tracks
   end
