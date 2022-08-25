@@ -68,7 +68,7 @@ class Public::PlayListsController < ApplicationController
     if @play_list
       @play_list.destroy
     end
-    redirect_to public_user_url(current_user), notice: "プレイリストを削除しました"
+    redirect_to public_user_path(current_user), notice: "プレイリストを削除しました"
   end
 
   private
