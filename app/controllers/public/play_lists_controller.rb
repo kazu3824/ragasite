@@ -36,7 +36,7 @@ class Public::PlayListsController < ApplicationController
 
   def update
     @play_list = PlayList.find(params[:id])
-    # ここから名前の更新
+    # ↓ここから名前の更新
     # 上で取得した@play_listのtitleカラムを、再作成ページのフォームに入力されてPOSTされたtitleという名前のパラメータで更新
     @play_list.update(title: params[:play_list][:title])
     # ここからは曲の更新

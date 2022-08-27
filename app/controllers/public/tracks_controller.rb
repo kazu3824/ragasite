@@ -1,7 +1,7 @@
 class Public::TracksController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  
+
   def new
     @track = Track.new
     @track.build_artist
@@ -44,7 +44,7 @@ class Public::TracksController < ApplicationController
     # アーティストを歌手テーブルから歌手名で検索する
     # find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
     artist = Artist.find_or_create_by(name: params[:track][:artist_name])
-    # 保存したいtrackの情報artist_id
+    # track_paramsにartist_idを追加して、trackを新規作成する
     @track = Track.new(track_params.merge(artist_id: artist.id))
     @track.user_id = current_user.id
    if @track.save
@@ -61,6 +61,7 @@ class Public::TracksController < ApplicationController
     # アーティストを歌手テーブルから歌手名で検索する
     # find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
     artist = Artist.find_or_create_by(name: params[:track][:artist_name])
+     # track_paramsにartist_idを追加して、trackを更新する
     if @track.update(track_params.merge(artist_id: artist.id))
       redirect_to public_track_path(@track), notice: "投稿を編集しました"
     else

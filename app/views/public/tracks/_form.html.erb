@@ -18,7 +18,7 @@
   </div>
   <div class="form-group">
     <%= f.label :タグ＊ %>
-    <%# f.select(メソッド名, 要素(配列 or ハッシュ)=nil, オプション={}, HTML属性={} %>
+    <!--f.select(メソッド名, 要素(配列 or ハッシュ)=nil, オプション={}, HTML属性={},Tagモデルのnameカラムとidカラムの二次元配列を取得してtag_idとタグ名のselectboxの作成-->
     <%= f.select :tag_id, Tag.all.pluck(:name, :id), {include_blank: '選択してください'}, {class: 'form-control'} %>
   </div>
   <div class="form-group">
