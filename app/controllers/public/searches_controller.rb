@@ -1,13 +1,14 @@
 class Public::SearchesController < ApplicationController
   def search_tag
     # tag_idのパラメーターが渡ってきてなければ
-    unless params["track"]["tag_id"].present?
+
+    unless params[:track][:tag_id].present?
       # 検索せずに曲一覧画面に戻る
       redirect_to public_tracks_path
       return
     end
     # トラックテーブルからトラックに紐付いているtag_idを指定してtrackを取得する
-    @tracks = Track.where(tag_id: params["track"]["tag_id"])
+    @tracks = Track.where(tag_id: params[:track][:tag_id])
     # tagテーブルからtag_idを指定してnameを取得する
     @seach_word = Tag.find(params[:track][:tag_id]).name
     # Kaminariの配列版を使用して@tracksをページネーションする
