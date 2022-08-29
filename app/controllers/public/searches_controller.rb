@@ -1,7 +1,6 @@
 class Public::SearchesController < ApplicationController
   def search_tag
     # tag_idのパラメーターが渡ってきてなければ
-
     unless params[:track][:tag_id].present?
       # 検索せずに曲一覧画面に戻る
       redirect_to public_tracks_path

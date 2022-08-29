@@ -12,20 +12,15 @@ class Public::PlayListsController < ApplicationController
   end
 
   def create
-    # 送られてきたタイトルのプレイリストを作成する
-    @play_list = current_user.play_lists.new(play_list_params)
-    # play_listのtrack_idsを一旦track_idsに入れている
-    track_ids = params[:play_list][:track_ids]
-    # track_idsのデータがあってなおかつ、保存が成功したならば
-    if !track_ids.nil? && @play_list.save
-      # 保存するtrack_idsを一件ずつ
-      track_ids.each do |track_id|
-        # 選曲したidをプレイリストのラインアイテムに新規で保存する
-        @play_list.line_items.order(position: :asc).create(track_id: track_id)
-      end
-      # 保存完了後詳細ページに戻る
+    # current_userで生成したcreate_play_listを呼び出し、params[:play_list]のすべてを渡す
+    # 戻ってくる値は、User.rbの※1のデータが戻ってくるのでそのデータを@play_listに入れる。
+    @play_list = current_user.create_play_list(play_list_params)
+    # @play_listには、保存に成功すればデータが入っているvalid?バリデーションチェックで失敗したかどうかをtrueかfalseで返す。
+    if @play_list.valid?
+      # 保存に成功していた場合は、リダイレクトする。
       redirect_to public_play_list_path(@play_list), notice: "プレイリストを作成しました"
     else
+      # 保存に失敗している場合は、:newをレンダリングする。
       render :new
     end
   end
@@ -35,32 +30,19 @@ class Public::PlayListsController < ApplicationController
   end
 
   def update
+    # PlayListを検索し、見つかった最初の1件を取得する
     @play_list = PlayList.find(params[:id])
-    # ↓ここから名前の更新
-    # 上で取得した@play_listのtitleカラムを、再作成ページのフォームに入力されてPOSTされたtitleという名前のパラメータで更新
-    @play_list.update(title: params[:play_list][:title])
-    # ここからは曲の更新
-    # track_idsの配列を数値から文字列に変換する
-    old_track_ids = @play_list.track_ids&.map(&:to_s)
-    # play_listのtrack_idsを一旦track_idsに入れている
-    track_ids = params[:play_list][:track_ids]
-    # もしtrack_idsが送信されていれば
-    if track_ids && track_ids.any?
-      # 送信されてきたトラックidsから現在存在するtrack_idsを除いたトラックidsをnewとする
-      insert_list = track_ids - old_track_ids
-      # 新しくなるプレイリストに存在しないidをdestroyする
-      delete_list = old_track_ids - track_ids
-      # 保存するリストを一件ずつ
-      insert_list.each do |track_id|
-        # 新規投稿する
-        @play_list.line_items.find_or_create_by(track_id: track_id)
-      end
-       # ラインアイテムに登録されている削除したいtrack_idを探してdestroyする
-      LineItem.where(track_id: delete_list).destroy_all
+    # play_listのtrack_idsを一旦track_idsに入れている。.map(&:to_i)は配列に入っているデーターに対してto_iメソッドを実行する（文字列を数字に変換している)
+    # viewから送られてくるパラメーターは全て文字列なので数字に変換する必要がある
+    new_track_ids = play_list_params[:track_ids].map(&:to_i)
+    # @play_listの更新が成功して、かつtrack_idsに何か入っていれば処理をするpresent?は存在していたらtrueを返す
+    if @play_list.update(title: play_list_params[:title]) && new_track_ids.present?
+      @play_list.update_relations(new_track_ids) # PlayListモデルで定義したupdate_relationsにtrack_idsを渡して呼び出して処理をする。
       redirect_to public_play_list_path(@play_list), notice: "プレイリストを編集しました"
     else
       render :edit
     end
+
   end
 
   def destroy
@@ -73,7 +55,9 @@ class Public::PlayListsController < ApplicationController
 
   private
 
+  # StrongParameterとは？
+  # POSTされたデータでpermitで許可されたものだけをplay_list_paramsとして返すもの
   def play_list_params
-    params.require(:play_list).permit(:title)
+    params.require(:play_list).permit(:title, track_ids: [])
   end
 end

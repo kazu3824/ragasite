@@ -31,7 +31,12 @@
           </td>
           <td><%= track.comments.count %>：コメント</td>
           <td>
-            <input type="checkbox" value="<%= track.id %>" name="play_list[track_ids][]" id="play_list_track_ids_<%= track.id %>">
+          　<!--include?=track.idが元々プレイリストに含まれていたかどうか-->
+            <% if @play_list.tracks.ids.include?(track.id) %>
+              <input type="checkbox" value="<%= track.id %>" name="play_list[track_ids][]" id="play_list_track_ids_<%= track.id %>" checked="checked">
+            <% else %>
+              <input type="checkbox" value="<%= track.id %>" name="play_list[track_ids][]" id="play_list_track_ids_<%= track.id %>">
+            <% end %>
           </td>
         </tr>
       <% end %>
