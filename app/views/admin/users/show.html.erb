@@ -17,8 +17,8 @@
         <td class="text-center"><%= link_to track.user.name.truncate(10), admin_users_path %></td>
         <td class="text-center"><%= track.title %></td>
         <td class="text-center"><%= track.artist.name %></td>
-        <td class="text-center"><%= link_to track.url.truncate(30),  track.url, target: :_blank  %></td>
-        <td class="text-center"><%= link_to track.comments.count,  admin_track_comments_path(track.id) %></td>
+        <td class="text-center"><%= link_to track.url.truncate(25), track.url, target: :_blank  %></td>
+        <td class="text-center"><%= link_to track.comments.count, admin_track_comments_path(track.id) %></td>
         <td class="text-center"><%= link_to "削除", admin_track_path(track.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
       </tr>
     <% end %>

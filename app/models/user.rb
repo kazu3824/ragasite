@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :track_favorited_tracks, through: :track_favorites, source: :track
   has_many :play_lists, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true,length:{maximum:20}
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : "no_image.jpg"
