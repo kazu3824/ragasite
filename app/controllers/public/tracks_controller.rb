@@ -7,19 +7,8 @@ class Public::TracksController < ApplicationController
   end
 
   def index
-    if params[:latest]
-      # task.rbに定義してあるscopeのlatestを使用
-      @tracks = Track.latest
-    elsif params[:old]
-      # task.rbに定義してあるscopeのoldを使用
-      @tracks = Track.old
-    elsif params[:order_by_favorite]
-      # task.rbに定義してあるscopeのorder_by_favoriteを使用
-      @tracks = Track.order_by_favorite
-    else
-      # task.rbに定義してあるscopeのlatestを使用
-      @tracks = Track.latest
-    end
+    # track.rbで定義したsort_by_conditionを呼び出している
+    @tracks = Track.sort_by_condition(params)
     @search_tag = Track.new
     # Kaminariの配列版を使用して@tracksをページネーションする
     @tracks = Kaminari.paginate_array(@tracks).page(params[:page]).per(10)
@@ -46,19 +35,21 @@ class Public::TracksController < ApplicationController
     # track_paramsにartist_idを追加して、trackを新規作成する
     @track = Track.new(track_params.merge(artist_id: artist.id))
     @track.user_id = current_user.id
-   if @track.save
-    redirect_to public_track_path(@track), notice: "曲を投稿しました"
-   else
-    # こちらはarray型ではないのでページを実行してページネーションする。
-    @tracks = Track.all.page(params[:page]).per(10)
-    render :new
-   end
+    if @track.save
+      redirect_to public_track_path(@track), notice: "曲を投稿しました"
+    else
+      # こちらはarray型ではないのでページを実行してページネーションする。
+      @tracks = Track.all.page(params[:page]).per(10)
+      render :new
+    end
   end
 
   def update
     @track = Track.find(params[:id])
     # アーティストを歌手テーブルから歌手名で検索する
     # find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
+    # hash = { track: { artist_name: "taro"} }
+    # hash[:track][:artist_name]
     artist = Artist.find_or_create_by(name: params[:track][:artist_name])
      # track_paramsにartist_idを追加して、trackを更新する
     if @track.update(track_params.merge(artist_id: artist.id))
