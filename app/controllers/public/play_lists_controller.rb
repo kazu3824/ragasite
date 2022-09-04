@@ -30,7 +30,7 @@ class Public::PlayListsController < ApplicationController
   end
 
   def update
-    # PlayListを検索し、見つかった最初の1件を取得する
+   # PlayListを検索し、見つかった最初の1件を取得する
     @play_list = PlayList.find(params[:id])
     # play_listのtrack_idsを一旦track_idsに入れている
     track_ids = play_list_params[:track_ids]

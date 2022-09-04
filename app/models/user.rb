@@ -28,4 +28,19 @@ class User < ApplicationRecord
     email == GUEST_EMAIL
   end
 
+  def create_play_list(params)
+    # プレイリストのタイトルを入れたものを生成する
+    # user_idは、自分自身のモデルのため、自動で補完される
+    # 例) #<PlayList:0x00007f09b016c978 id: nil, title: "元気になりたい時に聞くプレイリスト", user_id: 31, created_at: nil, updated_at: nil>
+    play_list = play_lists.new(title: params[:title])
+    # paramsで渡ってきたtrack_idsが空でなければ以下の処理をする
+    if params[:track_ids].present?
+      # track_idsをループでplay_list.line_itemsにtrack_idを事前準備する。親モデルに紐ずくモデルをnewしたい時はbuildを使う
+      params[:track_ids].each { |track_id| play_list.line_items.build(track_id: track_id) }
+    end
+    # プレイリストを保存する
+    play_list.save
+    # プレイリストの保存したデータを返す(※1)新しく作ったプレイリストを呼び出し元に返す。
+    play_list
+  end
 end

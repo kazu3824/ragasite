@@ -4,7 +4,7 @@ class PlayList < ApplicationRecord
   has_many :tracks, through: :line_items
 
   validates :title, presence: true
-
+  
   def self.create_by_user(user, params)
     # プレイリストのタイトルを入れたものを生成する
     # 例) #<PlayList:0x00007f09b016c978 id: nil, title: "元気になりたい時に聞くプレイリスト", user_id: 31, created_at: nil, updated_at: nil>
@@ -34,3 +34,4 @@ class PlayList < ApplicationRecord
     LineItem.where(track_id: old_track_ids - track_ids).destroy_all
   end
 end
+

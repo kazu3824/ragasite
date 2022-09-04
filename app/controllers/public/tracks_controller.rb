@@ -48,8 +48,6 @@ class Public::TracksController < ApplicationController
     @track = Track.find(params[:id])
     # アーティストを歌手テーブルから歌手名で検索する
     # find_or_create_byはアーティストを探しても見つからない場合は新しく作って保存する
-    # hash = { track: { artist_name: "taro"} }
-    # hash[:track][:artist_name]
     artist = Artist.find_or_create_by(name: params[:track][:artist_name])
      # track_paramsにartist_idを追加して、trackを更新する
     if @track.update(track_params.merge(artist_id: artist.id))
