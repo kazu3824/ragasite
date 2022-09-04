@@ -13,7 +13,7 @@ class Public::PlayListsController < ApplicationController
 
   def create
     # current_userで生成したcreate_play_listを呼び出し、params[:play_list]のすべてを渡す
-    # 戻ってくる値は、User.rbの※1のデータが戻ってくるのでそのデータを@play_listに入れる。（user
+    # 戻ってくる値は、User.rbの※1のデータが戻ってくるのでそのデータを@play_listに入れる。
     @play_list = PlayList.create_by_user(current_user, play_list_params)
     # @play_listには、保存に成功すればデータが入っているvalid?バリデーションチェックで失敗したかどうかをtrueかfalseで返す。
     if @play_list.valid?
@@ -30,7 +30,7 @@ class Public::PlayListsController < ApplicationController
   end
 
   def update
-   # PlayListを検索し、見つかった最初の1件を取得する
+    # PlayListを検索し、見つかった最初の1件を取得する
     @play_list = PlayList.find(params[:id])
     # play_listのtrack_idsを一旦track_idsに入れている
     track_ids = play_list_params[:track_ids]
