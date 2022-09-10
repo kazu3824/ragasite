@@ -1,14 +1,14 @@
 <% track.comments.each do |comment|%>
-<div class="row">
-  <div class="col-2">
-    <%= image_tag comment.user.get_profile_image, size: "100x100" %><br>
-    <%= link_to comment.user.name, public_user_path(comment.user.id) %>
+  <div class="row">
+    <div class="col-2">
+      <%= image_tag comment.user.get_profile_image, size: "100x100" %><br>
+      <%= link_to comment.user.name, public_user_path(comment.user.id) %>
+    </div>
+    <div class="col-5" style="overflow-wrap: anywhere"><%= comment.body %></div>
+    <div class="col-2">
+      <% if comment.user == current_user %>
+        <%= link_to "削除", public_track_comment_path(track, comment), method: :delete, class: "btn btn-danger pull-right",remote: true %>
+      <% end %>
+    </div>
   </div>
-  <div class="col-5" style="overflow-wrap: anywhere"><%= comment.body %></div>
-  <div class="col-2">
-    <% if comment.user == current_user %>
-      <%= link_to "削除", public_track_comment_path(track, comment), method: :delete, class: "btn btn-danger pull-right",remote: true %>
-    <% end %>
-  </div>
-</div>
 <% end %>

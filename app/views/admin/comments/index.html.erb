@@ -9,14 +9,14 @@
     </tr>
   </thead>
   <tbody>
-  <% @comments.each do |comment| %>
-    <tr>
-      <td class="text-center"><%= image_tag comment.user.get_profile_image, size: '50x50' %></td>
-      <td class="text-center w-30"><%= comment.user.name %></td>
-      <td class="text-center w-50"><%= comment.body %></td>
-      <td class="text-center"><%= link_to "削除", admin_track_comment_path(@track, comment), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
-    </tr>
-  <% end %>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td class="text-center"><%= image_tag comment.user.get_profile_image, size: '50x50' %></td>
+        <td class="text-center w-30"><%= comment.user.name %></td>
+        <td class="text-center w-50"><%= comment.body %></td>
+        <td class="text-center"><%= link_to "削除", admin_track_comment_path(@track, comment), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 <%= link_to "投稿一覧へ戻る",  admin_user_path(@track.user.id), class: 'btn btn-primary' %>

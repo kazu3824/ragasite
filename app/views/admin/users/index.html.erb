@@ -10,12 +10,12 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
-    <tr>
-      <td class="text-center"><%= user.id %></td>
-      <td class="text-center"><%= image_tag user.get_profile_image, size: '100x100' %></td>
-      <td class="text-center"><%= link_to user.name, admin_user_path(user.id) %></td>
-      <td class="text-center"><%= link_to "アカウントを削除", admin_user_path(user.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
-    </tr>
+      <tr>
+        <td class="text-center"><%= user.id %></td>
+        <td class="text-center"><%= image_tag user.get_profile_image, size: '100x100' %></td>
+        <td class="text-center"><%= link_to user.name, admin_user_path(user.id) %></td>
+        <td class="text-center"><%= link_to "アカウントを削除", admin_user_path(user.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

@@ -14,7 +14,8 @@ class Track < ApplicationRecord
   scope :old, -> { order(created_at: :asc) }
   # sort_byでいいねの少ない順に並び替えてreverseでいいねの多い順に並び替えている。※sort_byはRubyの仕様で少ない順に並び替えられるため
   scope :order_by_favorite, -> { sort_by {|track| track.track_favorites.size }.reverse }
-
+  
+  # self = Track
   def self.sort_by_condition(params)
     # URLのパラメーターにoldが存在している時
     if params[:old]
