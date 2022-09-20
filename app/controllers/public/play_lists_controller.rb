@@ -36,7 +36,7 @@ class Public::PlayListsController < ApplicationController
     track_ids = play_list_params[:track_ids]
     # @play_listの更新が成功して、かつtrack_idsに何か入っていれば処理をする。present?は存在していたらtrueを返す
     if @play_list.update(title: play_list_params[:title]) && track_ids.present?
-      @play_list.update_relations(track_ids) # PlayListモデルで定義したupdate_relationsにnew_track_idsを渡して呼び出して処理をする。
+      @play_list.update_relations(track_ids) # PlayListモデルで定義したupdate_relationsにtrack_idsを渡して呼び出して処理をする。
       redirect_to public_play_list_path(@play_list), notice: "プレイリストを編集しました"
     else
       render :edit
