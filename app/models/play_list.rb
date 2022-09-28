@@ -34,4 +34,3 @@ class PlayList < ApplicationRecord
     LineItem.where(track_id: old_track_ids - track_ids).destroy_all
   end
 end
-

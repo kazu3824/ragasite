@@ -12,7 +12,7 @@ class Public::PlayListsController < ApplicationController
   end
 
   def create
-    # current_userで生成したcreate_play_listを呼び出し、params[:play_list]のすべてを渡す
+    # current_userで生成したcreate_by_userを呼び出し、params[:play_list]のすべてを渡す
     # 戻ってくる値は、User.rbの※1のデータが戻ってくるのでそのデータを@play_listに入れる。
     @play_list = PlayList.create_by_user(current_user, play_list_params)
     # @play_listには、保存に成功すればデータが入っているvalid?バリデーションチェックで失敗したかどうかをtrueかfalseで返す。
